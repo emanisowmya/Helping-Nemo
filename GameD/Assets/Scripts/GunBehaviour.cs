@@ -38,25 +38,34 @@ public class GunBehaviour : MonoBehaviour
     float scale = 4f;
 
     obj = new GameObject("pulse1");
-    Rigidbody rigid = obj.AddComponent<Rigidbody>();
-    BoxCollider box = obj.AddComponent<BoxCollider>();
+    Rigidbody2D rigid = obj.AddComponent<Rigidbody2D>();
+    BoxCollider2D box = obj.AddComponent<BoxCollider2D>();
     SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
-
     renderer.sprite = spr;
-    rigid.useGravity = false;
-    renderer.sortingOrder = 4;
+    rigid.gravityScale = 0; 
+    renderer.sortingOrder = 3;
     obj.transform.localScale = new Vector2(scale, scale);
     Vector2 pos = nemo.transform.position;
     obj.transform.position = pos;
-
-    if (nemow.flipX == false)
-      rigid.AddForce(Vector2.right * 50);
+    rigid.freezeRotation = true;
+    
+    box.size = new Vector2( 0.2f , 0.2f);
+    
+        if (nemow.flipX == false)
+    { 
+      //rigid.AddForce(Vector2.right * 50);
+      rigid.velocity = new Vector2(10f, 0f);
+      box.offset = new Vector2(0.2f, 0f);
+    }
     else
     {
       renderer.flipX = true;
-      rigid.AddForce(Vector2.left * 50);
+      //rigid.AddForce(Vector2.left * 50);
+      rigid.velocity = new Vector2(-10f, 0f);
+      box.offset = new Vector2(-0.2f, 0f);
     }
 
+    
     /*
     Vector2 pos = nemo.transform.position;
     Vector2 position = obj.transform.position;
@@ -72,4 +81,13 @@ public class GunBehaviour : MonoBehaviour
     //print(spr);
     //print("yes");
   }
+
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "pulse1")
+        {
+            print("collided");
+        }
+    }
 }
