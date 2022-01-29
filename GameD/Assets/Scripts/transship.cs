@@ -4,24 +4,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class transship : MonoBehaviour
+public class TransShip : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Button yourButton;
-    void Start()
-    {
-        Button btn = yourButton.GetComponent<Button>();
-        btn.onClick.AddListener(TaskOnClick);
-    }
+  // Start is called before the first frame update
+  public Button yourButton;
+  void Start()
+  {
+    Button btn = yourButton.GetComponent<Button>();
+    btn.onClick.AddListener(TaskOnClick);
+  }
 
-    // Update is called once per frame
-    void Update()
-    {
+  // Update is called once per frame
+  void Update()
+  {
 
-    }
+  }
 
-    void TaskOnClick()
-    {
-        SceneManager.LoadScene("Level 1");
-    }
+  void TaskOnClick()
+  {
+    SceneManager.LoadScene("Level 1");
+  }
 }

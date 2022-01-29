@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class transnemo : MonoBehaviour
+public class TransNemo : MonoBehaviour
 {
     // Start is called before the first frame update
     public Button yourButton;
