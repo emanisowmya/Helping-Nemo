@@ -42,17 +42,17 @@ public class GunBehaviour : MonoBehaviour
     BoxCollider2D box = obj.AddComponent<BoxCollider2D>();
     SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
     renderer.sprite = spr;
-    rigid.gravityScale = 0; 
+    rigid.gravityScale = 0;
     renderer.sortingOrder = 3;
     obj.transform.localScale = new Vector2(scale, scale);
     Vector2 pos = nemo.transform.position;
     obj.transform.position = pos;
     rigid.freezeRotation = true;
-    
-    box.size = new Vector2( 0.2f , 0.2f);
-    
-        if (nemow.flipX == false)
-    { 
+
+    box.size = new Vector2(0.2f, 0.2f);
+
+    if (nemow.flipX == false)
+    {
       //rigid.AddForce(Vector2.right * 50);
       rigid.velocity = new Vector2(10f, 0f);
       box.offset = new Vector2(0.2f, 0f);
@@ -65,7 +65,7 @@ public class GunBehaviour : MonoBehaviour
       box.offset = new Vector2(-0.2f, 0f);
     }
 
-    
+
     /*
     Vector2 pos = nemo.transform.position;
     Vector2 position = obj.transform.position;
@@ -83,11 +83,12 @@ public class GunBehaviour : MonoBehaviour
   }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
+  void OnCollisionEnter2D(Collision2D collision)
+  {
+    Debug.Log("je");
+    if (collision.gameObject.name == "pulse1")
     {
-        if (collision.gameObject.name == "pulse1")
-        {
-            print("collided");
-        }
+      Destroy(collision.gameObject);
     }
+  }
 }
