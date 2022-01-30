@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2989230393058608122}
   - component: {fileID: 2989230393058608101}
   - component: {fileID: 2989230393058608100}
+  - component: {fileID: 556412343}
+  - component: {fileID: 556412347}
   m_Layer: 0
   m_Name: SpawnShip
   m_TagString: Untagged
@@ -109,3 +111,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.593607, y: 1.3938079}
   m_EdgeRadius: 0
+--- !u!114 &556412343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2989230393058608103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7873f5315231be4e8ec6fb9b3c1eaad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pb: {fileID: 0}
+--- !u!50 &556412347
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2989230393058608103}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 100
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

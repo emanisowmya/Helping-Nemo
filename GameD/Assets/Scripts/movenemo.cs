@@ -13,13 +13,16 @@ public class MoveNemo : MonoBehaviour
   private Collision2D collision;
   private string GARBAGE = "Garbage";
 
-  void Awake()
+  public ProgressBar Pb;
+    private int value = 0;
+    void Awake()
   {
     myBody = GetComponent<Rigidbody2D>();
   }
   void Start()
   {
     _renderer = GetComponent<SpriteRenderer>();
+        Pb.BarValue = 0;
   }
 
   // Update is called once per frame
@@ -52,11 +55,12 @@ public class MoveNemo : MonoBehaviour
   private void checkKeyPress()
   {
     // key press check
-    if (Input.GetKeyDown(KeyCode.Alpha2))
+    if (Input.GetKeyDown(KeyCode.Alpha2) && Pb.BarValue<100)
     {
       if (isNearGarbage)
       {
         Destroy(collision.gameObject);
+        Pb.BarValue += 20;
       }
     }
 

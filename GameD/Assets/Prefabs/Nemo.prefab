@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8766901818047628471}
   - component: {fileID: 8766901818047628465}
   - component: {fileID: 8766901818047628466}
-  - component: {fileID: 8766901818047628464}
+  - component: {fileID: 437739633}
   m_Layer: 0
   m_Name: Nemo
   m_TagString: Untagged
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8766901818047628464
+--- !u!114 &437739633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,3 +144,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941d75f9f2e3e3a45baf20423c0861d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Pb: {fileID: 0}
