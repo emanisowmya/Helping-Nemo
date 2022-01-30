@@ -27,7 +27,6 @@ public class MoveNemo : MonoBehaviour
   {
     moveNemoShip();
     checkKeyPress();
-
   }
 
   private void moveNemoShip()
