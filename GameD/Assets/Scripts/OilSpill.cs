@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class OilSpill : MonoBehaviour
 {
-    [SerializeField] private float blobbingSpeed;
-    [SerializeField] private float decreaseSpeed;
-    private float spillSize;
-    private float increaseSpeed;
-    private float movementSpeed;
+    [SerializeField] private float blobbingSpeed; // random blob speed
+    [SerializeField] private float decreaseSpeed; // suck in speed by nemo
+    private float spillSize; // oil size
+    private float increaseSpeed; // gradual increase in oil
+    private float movementSpeed; // gradual movement in oil
 
     private bool isSuckOilOn = false;
 
@@ -34,6 +34,8 @@ public class OilSpill : MonoBehaviour
             // gradually suck the oil blob making it smaller
 
             transform.localScale -= new Vector3(2 * decreaseSpeed, decreaseSpeed, decreaseSpeed);
+
+            // if oil size reaches zero, destroy object
             if (transform.localScale.y <= 0.1f)
             {
                 Destroy(gameObject);
@@ -44,20 +46,12 @@ public class OilSpill : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "pulse1")
-        {
-            Destroy(gameObject);
-            Destroy(collision.gameObject);
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Nemo")
         {
-
+            // When triggered, oil can be sucked into nemo
             isSuckOilOn = true;
             Debug.Log("oil");
 
@@ -67,6 +61,7 @@ public class OilSpill : MonoBehaviour
     {
         if (collision.gameObject.name == "Nemo")
         {
+            // When leave the oil boundary, not able to suck now
             isSuckOilOn = false;
 
         }
