@@ -10,7 +10,7 @@ public class MoveNemo : MonoBehaviour
 
   private Rigidbody2D myBody;
   private bool isNearGarbage = false;
-  private Collider2D collision;
+  private Collision2D collision;
   private string GARBAGE = "Garbage";
 
   void Awake()
@@ -65,31 +65,24 @@ public class MoveNemo : MonoBehaviour
   }
 
 
-  private void OnTriggerEnter2D(Collider2D collision)
+  void OnCollisionEnter2D(Collision2D collision)
   {
-    if (collision.CompareTag(GARBAGE))
+    if (collision.gameObject.CompareTag(GARBAGE))
     {
       this.collision = collision;
       isNearGarbage = true;
     }
   }
 
-  //Just stop overlapping a collider 2D
-  private void OnTriggerExit2D(Collider2D collision)
+  //Just stop hitting a collider 2D
+  private void OnCollisionExit2D(Collision2D collision)
   {
-    if (collision.CompareTag(GARBAGE))
+
+    if (collision.gameObject.CompareTag(GARBAGE))
     {
       isNearGarbage = false;
     }
   }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Moon(Clone)")
-        {
-            Destroy(collision.gameObject);
-        }
-    }
 
 }
 

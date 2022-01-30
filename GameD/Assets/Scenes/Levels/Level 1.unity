@@ -967,26 +967,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8766901818047628465, guid: bdab135f3a6dd434691f089201549b90, type: 3}
-      propertyPath: m_Size.x
-      value: 1.0456823
-      objectReference: {fileID: 0}
-    - target: {fileID: 8766901818047628465, guid: bdab135f3a6dd434691f089201549b90, type: 3}
-      propertyPath: m_Size.y
-      value: 0.81735975
-      objectReference: {fileID: 0}
-    - target: {fileID: 8766901818047628465, guid: bdab135f3a6dd434691f089201549b90, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.04321979
-      objectReference: {fileID: 0}
-    - target: {fileID: 8766901818047628465, guid: bdab135f3a6dd434691f089201549b90, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.03120038
-      objectReference: {fileID: 0}
-    - target: {fileID: 8766901818047628465, guid: bdab135f3a6dd434691f089201549b90, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8766901818047628467, guid: bdab135f3a6dd434691f089201549b90, type: 3}
       propertyPath: m_Name
       value: Nemo
@@ -1034,18 +1014,6 @@ PrefabInstance:
     - target: {fileID: 8766901818047628470, guid: bdab135f3a6dd434691f089201549b90, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8766901818047628471, guid: bdab135f3a6dd434691f089201549b90, type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8766901818047628471, guid: bdab135f3a6dd434691f089201549b90, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8766901818047628471, guid: bdab135f3a6dd434691f089201549b90, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1365224885
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdab135f3a6dd434691f089201549b90, type: 3}
