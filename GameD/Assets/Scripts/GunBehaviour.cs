@@ -15,7 +15,7 @@ public class GunBehaviour : MonoBehaviour
   void Start()
   {
     Button btn = yourButton.GetComponent<Button>();
-    btn.onClick.AddListener(TaskOnClick);
+    btn.onClick.AddListener(CreatePulse);
 
   }
 
@@ -26,13 +26,13 @@ public class GunBehaviour : MonoBehaviour
     {
       if (isShootPermission)
       {
-        TaskOnClick();
+        CreatePulse();
       }
     }
 
   }
 
-  void TaskOnClick()
+  void CreatePulse()
   {
     GameObject obj;
     float scale = 4f;
@@ -64,31 +64,6 @@ public class GunBehaviour : MonoBehaviour
       rigid.velocity = new Vector2(-10f, 0f);
       box.offset = new Vector2(-0.2f, 0f);
     }
-
-
-    /*
-    Vector2 pos = nemo.transform.position;
-    Vector2 position = obj.transform.position;
-
-
-    int speed = 10;
-    while(position.x < 9.09)
-    {
-        position.x +=  speed * Time.deltaTime;
-        obj.transform.position = position;
-    }
-    */
-    //print(spr);
-    //print("yes");
   }
 
-
-  void OnCollisionEnter2D(Collision2D collision)
-  {
-    Debug.Log("je");
-    if (collision.gameObject.name == "pulse1")
-    {
-      Destroy(collision.gameObject);
-    }
-  }
 }
