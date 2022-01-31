@@ -10,11 +10,16 @@ public class OilSpill : MonoBehaviour
 
     private bool isSuckOilOn = false;
 
+    AudioSource gun;
+
     void Start()
     {
         // Initialise the oil spill size randomly
         spillSize = Random.Range(1, 5);
         transform.localScale = new Vector3(2.5f * spillSize, spillSize, spillSize);
+        gun = GetComponent<AudioSource>();
+        gun.volume = 0.5f;
+        gun.Stop();
     }
 
     // Update is called once per frame
@@ -32,15 +37,19 @@ public class OilSpill : MonoBehaviour
         {
 
             // gradually suck the oil blob making it smaller
-
+            gun.Play();
             transform.localScale -= new Vector3(2 * decreaseSpeed, decreaseSpeed, decreaseSpeed);
-
             // if oil size reaches zero, destroy object
             if (transform.localScale.y <= 0.1f)
             {
                 Destroy(gameObject);
+                gun.Stop();
             }
 
+        }
+        else
+        {
+           // gun.Stop();
         }
 
 
@@ -53,7 +62,7 @@ public class OilSpill : MonoBehaviour
         {
             // When triggered, oil can be sucked into nemo
             isSuckOilOn = true;
-            Debug.Log("oil");
+            //Debug.Log("oil");
 
         }
     }

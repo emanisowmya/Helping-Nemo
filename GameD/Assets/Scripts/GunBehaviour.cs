@@ -9,10 +9,15 @@ public class GunBehaviour : MonoBehaviour
     public GameObject nemo;
     private bool isShootPermission = true;
     public SpriteRenderer nemow;
+
+    AudioSource gun;
     void Start()
     {
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(CreatePulse);
+        gun = GetComponent<AudioSource>();
+        gun.volume = 0.5f;
+        gun.Stop();
 
     }
 
@@ -24,6 +29,7 @@ public class GunBehaviour : MonoBehaviour
             if (isShootPermission)
             {
                 CreatePulse();
+                gun.Play();
             }
         }
 
