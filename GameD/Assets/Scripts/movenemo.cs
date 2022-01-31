@@ -5,13 +5,17 @@ using UnityEngine.SceneManagement;
 public class MoveNemo : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] protected int speed;
+    [SerializeField] 
+    protected int speed;
+
     private SpriteRenderer _renderer;
 
     private Rigidbody2D myBody;
     private bool isNearGarbage = false;
+    public bool isNearStuckedFish = false;
     private Collision2D collision;
     private string GARBAGE = "Garbage";
+    private string NET_STUCKED_FISH = "NetStuckedFish";
 
     AudioSource garbage;
 
@@ -23,6 +27,7 @@ public class MoveNemo : MonoBehaviour
 
     [SerializeField]
     protected Text text;
+
     void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
@@ -121,6 +126,12 @@ public class MoveNemo : MonoBehaviour
             this.collision = collision;
             isNearGarbage = true;
         }
+
+        else if (collision.gameObject.CompareTag(NET_STUCKED_FISH))
+        {
+            isNearStuckedFish = true;
+            Debug.Log("Near");
+        }
     }
 
     //Just stop hitting a collider 2D
@@ -130,6 +141,12 @@ public class MoveNemo : MonoBehaviour
         if (collision.gameObject.CompareTag(GARBAGE))
         {
             isNearGarbage = false;
+        }
+
+        else if (collision.gameObject.CompareTag(NET_STUCKED_FISH))
+        {
+            isNearStuckedFish = false;
+            Debug.Log("Far");
         }
     }
 
