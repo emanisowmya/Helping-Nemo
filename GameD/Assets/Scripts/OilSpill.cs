@@ -130,6 +130,7 @@ public class OilSpill : MonoBehaviour
                 Debug.Log(playerWon + " + change playerwon");
                 playerWon = true;
                 gameOver = true;
+                Debug.Log(playerWon + " + change playerwon");
             }
 
             // gradually suck the oil blob making it 
