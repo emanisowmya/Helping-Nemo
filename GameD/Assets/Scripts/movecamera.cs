@@ -38,7 +38,7 @@ public class MoveCamera : MonoBehaviour
     //float xNew = Mathf.Lerp(transform.position.x, xTarget, Time.deltaTime * followSpeed);
     //float yNew = Mathf.Lerp(transform.position.y, yTarget, Time.deltaTime * followSpeed);
 
-    if (trackingTarget.position.x > -24.59974 && trackingTarget.position.x < 25.59974)
+    if (trackingTarget.position.x > -24.59974 && trackingTarget.position.x < 24.59974)
     {
       float xNew = transform.position.x;
       if (!isXLocked)

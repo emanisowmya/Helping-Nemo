@@ -5,10 +5,11 @@ using UnityEngine;
 public class Collector : MonoBehaviour
 {
 
-  // TODO:NOT COMPLETE
-  private void OnTriggerEnter2D(Collider2D collision)
+  void OnCollisionEnter2D(Collision2D collision)
   {
-    Debug.Log("he");
-    Destroy(collision.gameObject);
+    if (collision.gameObject.name == "pulse1")
+    {
+      Destroy(collision.gameObject);
+    }
   }
 }
