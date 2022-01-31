@@ -1,181 +1,181 @@
-using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MoveNemo : MonoBehaviour
 {
-  // Start is called before the first frame update
-  [SerializeField] protected int speed;
-  private SpriteRenderer _renderer;
+    // Start is called before the first frame update
+    [SerializeField] protected int speed;
+    private SpriteRenderer _renderer;
 
-  private Rigidbody2D myBody;
-  private bool isNearGarbage = false;
-  private Collision2D collision;
-  private string GARBAGE = "Garbage";
+    private Rigidbody2D myBody;
+    private bool isNearGarbage = false;
+    private Collision2D collision;
+    private string GARBAGE = "Garbage";
 
-  AudioSource garbage;
+    AudioSource garbage;
 
-  [SerializeField]
-  protected ProgressBar Pb;
+    [SerializeField]
+    protected ProgressBar Pb;
 
-  [SerializeField]
-  protected Image guideImage, scoreImage;
+    [SerializeField]
+    protected Image guideImage, scoreImage;
 
-  [SerializeField]
-  protected Text guideText, scoreText;
+    [SerializeField]
+    protected Text guideText, scoreText;
 
-  [SerializeField]
-  private TextMeshProUGUI textTimer;
+    [SerializeField]
+    private TextMeshProUGUI textTimer;
 
-  private bool playerWon = false, gameOver = false;
-  private int scoreCollect = 0;
-  void Awake()
-  {
-    myBody = GetComponent<Rigidbody2D>();
-
-  }
-  void Start()
-  {
-    _renderer = GetComponent<SpriteRenderer>();
-    Pb.BarValue = 0;
-
-    garbage = GetComponent<AudioSource>();
-    garbage.volume = 0.5f;
-    garbage.Stop();
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-    checkGameOver();
-    moveNemoShip();
-    checkKeyPress();
-    checkNextLevel();
-  }
-
-  private void checkGameOver()
-  {
-    if (textTimer.text == "Game Over!" || gameOver)
+    private bool playerWon = false, gameOver = false;
+    private int scoreCollect = 0;
+    void Awake()
     {
-      textTimer.text = string.Format("Game Over!");
-      gameOver = true;
-      if (playerWon)
-      {
-        guideText.text = "Congratulations, level complete.\nPress \"0\" to go to next level";
-      }
-      else
-      {
-        guideText.text = "Alas, you lost.\nPress \"1\" to restart";
-      }
+        myBody = GetComponent<Rigidbody2D>();
+
     }
-  }
-  private void checkNextLevel()
-  {
-    if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
+    void Start()
     {
-      Scene scene = SceneManager.GetActiveScene();
-      //print(scene.name[scene.name.Length-1]);
-      int bar = scene.name[scene.name.Length - 1] - '0';
-      if (bar < 5)
-        SceneManager.LoadScene("Level " + (bar + 1));
-    }
-    else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
-    {
-      Scene scene = SceneManager.GetActiveScene();
-      //print(scene.name[scene.name.Length-1]);
-      int bar = scene.name[scene.name.Length - 1] - '0';
-      SceneManager.LoadScene("Level " + bar);
-    }
-  }
-  private void moveNemoShip()
-  {
-    if (gameOver)
-    {
-      return;
+        _renderer = GetComponent<SpriteRenderer>();
+        Pb.BarValue = 0;
+
+        garbage = GetComponent<AudioSource>();
+        garbage.volume = 0.5f;
+        garbage.Stop();
     }
 
-    float h = Input.GetAxis("Horizontal");
-    float v = Input.GetAxis("Vertical");
+    // Update is called once per frame
+    void Update()
+    {
+        CheckGameOver();
+        MoveNemoShip();
+        CheckKeyPress();
+        CheckNextLevel();
+    }
 
-    if (h > 0)
+    private void CheckGameOver()
     {
-      _renderer.flipX = false;
-    }
-    else if (h < 0)
-    {
-      _renderer.flipX = true;
-    }
-    Vector2 pos = transform.position;
-    pos.x += h * speed * Time.deltaTime;
-    pos.y += v * speed * Time.deltaTime;
-    transform.position = pos;
-  }
-
-  private void checkKeyPress()
-  {
-    if (gameOver)
-    {
-      return;
-    }
-    // key press check
-    if (Input.GetKeyDown(KeyCode.Alpha2) && Pb.BarValue < 100)
-    {
-      if (isNearGarbage)
-      {
-        garbage.Play();
-        Destroy(collision.gameObject);
-        Pb.BarValue += 10;
-        scoreCollect += 1;
-        scoreText.text = "Score: " + scoreCollect;
-        if (scoreCollect >= 20)
+        if (textTimer.text == "Game Over!" || gameOver)
         {
-          playerWon = true;
-          gameOver = true;
+            textTimer.text = string.Format("Game Over!");
+            gameOver = true;
+            if (playerWon)
+            {
+                guideText.text = "Congratulations, level complete.\nPress \"0\" to go to next level";
+            }
+            else
+            {
+                guideText.text = "Alas, you lost.\nPress \"1\" to restart";
+            }
         }
-      }
     }
-    else if (Input.GetKeyDown(KeyCode.Alpha2) && Pb.BarValue == 100)
+    private void CheckNextLevel()
     {
-      if (isNearGarbage)
-      {
-        StartCoroutine(errorMessage());
-      }
+        if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            //print(scene.name[scene.name.Length-1]);
+            int bar = scene.name[scene.name.Length - 1] - '0';
+            if (bar < 5)
+                SceneManager.LoadScene("Level " + (bar + 1));
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            //print(scene.name[scene.name.Length-1]);
+            int bar = scene.name[scene.name.Length - 1] - '0';
+            SceneManager.LoadScene("Level " + bar);
+        }
     }
-
-  }
-
-  IEnumerator errorMessage()
-  {
-
-    //Print the time of when the function is first called.
-    guideText.text = "The collector is full.\ngo near ship and press \"9\" to release it.";
-
-    //yield on a new YieldInstruction that waits for 2 seconds.
-    yield return new WaitForSeconds(5);
-
-    guideText.text = "Go near garbage and press \"2\" to collect it";
-  }
-
-  void OnCollisionEnter2D(Collision2D collision)
-  {
-    if (collision.gameObject.CompareTag(GARBAGE))
+    private void MoveNemoShip()
     {
-      this.collision = collision;
-      isNearGarbage = true;
+        if (gameOver)
+        {
+            return;
+        }
+
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+
+        if (h > 0)
+        {
+            _renderer.flipX = false;
+        }
+        else if (h < 0)
+        {
+            _renderer.flipX = true;
+        }
+        Vector2 pos = transform.position;
+        pos.x += h * speed * Time.deltaTime;
+        pos.y += v * speed * Time.deltaTime;
+        transform.position = pos;
     }
-  }
 
-  //Just stop hitting a collider 2D
-  private void OnCollisionExit2D(Collision2D collision)
-  {
-
-    if (collision.gameObject.CompareTag(GARBAGE))
+    private void CheckKeyPress()
     {
-      isNearGarbage = false;
+        if (gameOver)
+        {
+            return;
+        }
+        // key press check
+        if (Input.GetKeyDown(KeyCode.Alpha2) && Pb.BarValue < 100)
+        {
+            if (isNearGarbage)
+            {
+                garbage.Play();
+                Destroy(collision.gameObject);
+                Pb.BarValue += 10;
+                scoreCollect += 1;
+                scoreText.text = "Score: " + scoreCollect;
+                if (scoreCollect >= 20)
+                {
+                    playerWon = true;
+                    gameOver = true;
+                }
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && Pb.BarValue == 100)
+        {
+            if (isNearGarbage)
+            {
+                StartCoroutine(errorMessage());
+            }
+        }
+
     }
-  }
+
+    IEnumerator errorMessage()
+    {
+
+        //Print the time of when the function is first called.
+        guideText.text = "The collector is full.\ngo near ship and press \"9\" to release it.";
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(5);
+
+        guideText.text = "Go near garbage and press \"2\" to collect it";
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(GARBAGE))
+        {
+            this.collision = collision;
+            isNearGarbage = true;
+        }
+    }
+
+    //Just stop hitting a collider 2D
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.CompareTag(GARBAGE))
+        {
+            isNearGarbage = false;
+        }
+    }
 
 }
 

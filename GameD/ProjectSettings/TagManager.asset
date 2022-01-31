@@ -8,6 +8,7 @@ TagManager:
   - NetStuckedFish
   - Net
   - OilSpill
+  - UI ProgressBar
   layers:
   - Default
   - TransparentFX
