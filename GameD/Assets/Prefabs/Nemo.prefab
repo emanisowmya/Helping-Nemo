@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8766901818047628470
 Transform:
@@ -147,8 +147,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   Pb: {fileID: 0}
-  image: {fileID: 0}
-  text: {fileID: 0}
+  guideImage: {fileID: 0}
+  scoreImage: {fileID: 0}
+  guideText: {fileID: 0}
+  scoreText: {fileID: 0}
+  textTimer: {fileID: 0}
 --- !u!82 &437739638
 AudioSource:
   m_ObjectHideFlags: 0
