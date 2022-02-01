@@ -10,6 +10,7 @@ TagManager:
   - OilSpill
   - UI ProgressBar
   - Fish
+  - SpawnShip
   layers:
   - Default
   - TransparentFX

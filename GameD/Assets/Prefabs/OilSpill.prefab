@@ -122,5 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30dffdd60ec69dd43be671f29654ae33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blobbingSpeed: 0.0025
-  decreaseSpeed: 0.004
+  blobbingSpeed: 0.0028
+  decreaseSpeed: 0.0045

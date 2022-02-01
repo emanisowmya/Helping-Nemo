@@ -11,9 +11,11 @@ public class MoveNemo : MonoBehaviour
     private SpriteRenderer _renderer;
 
     private Rigidbody2D myBody;
-    private bool isNearGarbage = false;
     private Collision2D collision;
+    private bool isNearGarbage = false;
+
     private string GARBAGE = "Garbage";
+    private string SPAWNSHIP = "SpawnShip";
 
     AudioSource garbage;
 
@@ -31,6 +33,9 @@ public class MoveNemo : MonoBehaviour
 
     private bool playerWon = false, gameOver = false;
     private int scoreCollect = 0;
+
+    // for checking if nemo is spawn ship, can be used by oil spill so kept public
+    public bool isNearSpawnShip = false;
 
     void Awake()
     {
@@ -58,7 +63,9 @@ public class MoveNemo : MonoBehaviour
 
     private void CheckGameOver()
     {
-        if (textTimer.text == "Game Over!" || gameOver)
+        Scene scene = SceneManager.GetActiveScene();
+
+        if ((textTimer.text == "Game Over!" || gameOver) && scene.name == "Level 1")
         {
             textTimer.text = string.Format("Game Over!");
             gameOver = true;
@@ -165,6 +172,14 @@ public class MoveNemo : MonoBehaviour
             this.collision = collision;
             isNearGarbage = true;
         }
+
+        // for checking if nemo is spawn ship, can be used by oil spill
+        if (collision.gameObject.CompareTag(SPAWNSHIP))
+        {
+            this.collision = collision;
+            isNearSpawnShip = true;
+
+        }
     }
     //Just stop hitting a collider 2D
     private void OnCollisionExit2D(Collision2D collision)
@@ -173,6 +188,10 @@ public class MoveNemo : MonoBehaviour
         if (collision.gameObject.CompareTag(GARBAGE))
         {
             isNearGarbage = false;
+        }
+        if (collision.gameObject.CompareTag(SPAWNSHIP))
+        {
+            isNearSpawnShip = false;
         }
     }
 
