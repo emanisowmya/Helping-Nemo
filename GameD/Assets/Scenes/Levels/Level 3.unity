@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: scoreImage
       value: 
       objectReference: {fileID: 1299060922}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: progressBar
+      value: 
+      objectReference: {fileID: 1387187724}
     - target: {fileID: 9123869402203844922, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
       propertyPath: m_Size.x
       value: 0.6377792
@@ -2009,6 +2013,10 @@ PrefabInstance:
       propertyPath: scoreImage
       value: 
       objectReference: {fileID: 1299060922}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: progressBar
+      value: 
+      objectReference: {fileID: 1387187724}
     - target: {fileID: 9123869402203844924, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
       propertyPath: m_RootOrder
       value: 1
