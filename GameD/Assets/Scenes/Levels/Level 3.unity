@@ -191,6 +191,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: OilSpill
       objectReference: {fileID: 0}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: Pb
+      value: 
+      objectReference: {fileID: 1387187724}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: guideText
+      value: 
+      objectReference: {fileID: 697347924}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1709826901}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: textTimer
+      value: 
+      objectReference: {fileID: 573328161}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: guideImage
+      value: 
+      objectReference: {fileID: 967434170}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: scoreImage
+      value: 
+      objectReference: {fileID: 1299060922}
     - target: {fileID: 9123869402203844922, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
       propertyPath: m_Size.x
       value: 0.6377792
@@ -636,7 +664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &399702503
 RectTransform:
   m_ObjectHideFlags: 0
@@ -790,6 +818,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: OilSpill (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: Pb
+      value: 
+      objectReference: {fileID: 1387187724}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: guideText
+      value: 
+      objectReference: {fileID: 697347924}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1709826901}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: textTimer
+      value: 
+      objectReference: {fileID: 573328161}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: guideImage
+      value: 
+      objectReference: {fileID: 967434170}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: scoreImage
+      value: 
+      objectReference: {fileID: 1299060922}
     - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
       propertyPath: progressBar
       value: 
@@ -1906,6 +1958,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: OilSpill (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: Pb
+      value: 
+      objectReference: {fileID: 1387187724}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: guideText
+      value: 
+      objectReference: {fileID: 697347924}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1709826901}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: textTimer
+      value: 
+      objectReference: {fileID: 573328161}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: guideImage
+      value: 
+      objectReference: {fileID: 967434170}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: scoreImage
+      value: 
+      objectReference: {fileID: 1299060922}
     - target: {fileID: 9123869402203844924, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2377,6 +2453,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: OilSpill (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: Pb
+      value: 
+      objectReference: {fileID: 1387187724}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: guideText
+      value: 
+      objectReference: {fileID: 697347924}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1709826901}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: textTimer
+      value: 
+      objectReference: {fileID: 573328161}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: guideImage
+      value: 
+      objectReference: {fileID: 967434170}
+    - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
+      propertyPath: scoreImage
+      value: 
+      objectReference: {fileID: 1299060922}
     - target: {fileID: 9123869402203844921, guid: 5a8cb39978f31cc42b65f1dc1ad3f61a, type: 3}
       propertyPath: progressBar
       value: 

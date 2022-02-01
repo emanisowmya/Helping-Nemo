@@ -67,6 +67,7 @@ public class OilSpill : MonoBehaviour
         {
             textTimer.text = string.Format("Game Over!");
             gameOver = true;
+
             if (playerWon)
             {
                 guideText.text = "Congratulations, level complete.\nPress \"0\" to go to next level";
@@ -125,11 +126,11 @@ public class OilSpill : MonoBehaviour
             scoreCollect += Time.deltaTime * 3;
             scoreText.text = "Score: " + (int)scoreCollect;
 
-            if (scoreCollect >= 20)
+            if ((int)scoreCollect >= 20f)
             {
-                Debug.Log(playerWon + " + change playerwon");
                 playerWon = true;
                 gameOver = true;
+                CheckGameOver();
                 Debug.Log(playerWon + " + change playerwon");
             }
 

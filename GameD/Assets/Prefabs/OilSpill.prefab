@@ -123,4 +123,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blobbingSpeed: 0.0025
-  decreaseSpeed: 0.005
+  decreaseSpeed: 0.004
