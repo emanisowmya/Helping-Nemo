@@ -12,6 +12,7 @@ public class Net : MonoBehaviour
   private GameObject net_stucked_fish;
 
   protected ProgressBar progressBar;
+
   protected Text guideText, scoreText;
   private TextMeshProUGUI textTimer;
 
@@ -30,7 +31,7 @@ public class Net : MonoBehaviour
 
   void Awake()
   {
-    progressBar = GameObject.Find("UI ProgressBar").GetComponent<ProgressBar>();
+    progressBar = GameObject.Find("UI ProgressBar Animal Save").GetComponent<ProgressBar>();
     guideText = GameObject.Find("Instruction_text_Bg").GetComponent<Text>();
     scoreText = GameObject.Find("Score_text").GetComponent<Text>();
     textTimer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
@@ -88,9 +89,9 @@ public class Net : MonoBehaviour
 
   private void CheckGameOver()
   {
-    if (textTimer.text == "Game Over!" || gameOver)
+    Scene scene = SceneManager.GetActiveScene();
+    if (scene.name == "Level 2" &&(textTimer.text == "Game Over!" || gameOver))
     {
-      textTimer.text = string.Format("Game Over!");
       gameOver = true;
 
 
@@ -100,7 +101,7 @@ public class Net : MonoBehaviour
       }
       else
       {
-        guideText.text = "Alas, you lost.\nPress \"1\" to restart";
+        guideText.text = "Alas net, you lost.\nPress \"1\" to restart";
       }
     }
   }

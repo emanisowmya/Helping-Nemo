@@ -12,7 +12,7 @@ public class MoveNemo : MonoBehaviour
 
   private Rigidbody2D myBody;
   private Collision2D collision;
-  private bool isNearGarbage = false;
+  private bool isNearGarbage = false, baki_left = false;
 
   private string GARBAGE = "Garbage";
   private string SPAWNSHIP = "SpawnShip";
@@ -24,12 +24,12 @@ public class MoveNemo : MonoBehaviour
   [SerializeField]
   protected Image guideImage, scoreImage;
 
-  public Text guideText, scoreText;
+  public Text guideText, scoreText, scoreText_animal, scoreText_oil;
 
   [SerializeField]
   private RectTransform help;
 
-  private bool open_help = false;
+  private bool open_help = true;
 
   [SerializeField]
   private TextMeshProUGUI textTimer;
@@ -69,9 +69,8 @@ public class MoveNemo : MonoBehaviour
   {
     Scene scene = SceneManager.GetActiveScene();
 
-    if ((textTimer.text == "Game Over!" || gameOver) && !(scene.name == "Level 2" || scene.name == "Level 3"))
+    if (scene.name == "Level 1" && (textTimer.text == "Game Over!" || gameOver))
     {
-      textTimer.text = string.Format("Game Over!");
       gameOver = true;
       if (playerWon)
       {
@@ -89,11 +88,33 @@ public class MoveNemo : MonoBehaviour
         playerWon = true;
         gameOver = true;
       }
-    }else if(scene.name == "Level 3"){
+    }
+    else if (scene.name == "Level 3")
+    {
       if (scoreText.text == "Score: 30")
       {
         playerWon = true;
         gameOver = true;
+      }
+    }
+    else if (scene.name == "Level 4" || scene.name == "Level 5")
+    {
+      if (textTimer.text == "Game Over!" || (scoreText_animal.text == "Score: 10" && scoreText_oil.text == "Score: 30" && gameOver))
+      {
+        baki_left = false;
+        gameOver = true;
+        if (playerWon)
+        {
+          guideText.text = "Congratulations, level complete.\nPress \"0\" to go to next level";
+        }
+        else
+        {
+          guideText.text = "Alas, you lost.\nPress \"1\" to restart";
+        }
+      }
+      else
+      {
+        baki_left = true;
       }
     }
   }
@@ -117,7 +138,7 @@ public class MoveNemo : MonoBehaviour
   }
   private void MoveNemoShip()
   {
-    if (gameOver)
+    if (!baki_left && gameOver)
     {
       return;
     }

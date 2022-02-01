@@ -17,7 +17,10 @@ public class OilSpill : MonoBehaviour
   private bool isNearSpawnShip = false;
   private static float suckedInInt = 0;
 
+  [SerializeField]
   protected ProgressBar progressBar;
+
+  [SerializeField]
   protected Text guideText, scoreText;
   private TextMeshProUGUI textTimer;
 
@@ -33,9 +36,7 @@ public class OilSpill : MonoBehaviour
   AudioSource gun;
   private void Awake()
   {
-    progressBar = GameObject.Find("UI ProgressBar").GetComponent<ProgressBar>();
     guideText = GameObject.Find("Instruction_text_Bg").GetComponent<Text>();
-    scoreText = GameObject.Find("Score_text").GetComponent<Text>();
     textTimer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
   }
 
@@ -63,9 +64,9 @@ public class OilSpill : MonoBehaviour
   }
   private void CheckGameOver()
   {
-    if (textTimer.text == "Game Over!" || gameOver)
+    Scene scene = SceneManager.GetActiveScene();
+    if (scene.name == "Level 3" && (textTimer.text == "Game Over!" || gameOver))
     {
-      textTimer.text = string.Format("Game Over!");
       gameOver = true;
 
       if (scoreText.text == "Score: 30")
@@ -74,7 +75,7 @@ public class OilSpill : MonoBehaviour
       }
       else
       {
-        guideText.text = "Alas, you lost.\nPress \"1\" to restart";
+        guideText.text = "Alas, oil you lost.\nPress \"1\" to restart";
       }
     }
   }
@@ -152,13 +153,13 @@ public class OilSpill : MonoBehaviour
       }
 
     }
-    // key press check for mother ship deposit
-    if (Input.GetKeyDown(KeyCode.Alpha9))
-    {
-      progressBar.BarValue = 0;
-      suckedInInt = 0;
+    // // key press check for mother ship deposit
+    // if (Input.GetKeyDown(KeyCode.Alpha9))
+    // {
+    //   progressBar.BarValue = 0;
+    //   suckedInInt = 0;
 
-    }
+    // }
   }
 
   private void OnTriggerEnter2D(Collider2D collision)
