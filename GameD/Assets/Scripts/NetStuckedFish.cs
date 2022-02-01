@@ -11,6 +11,8 @@ public class NetStuckedFish : MonoBehaviour
     private Vector3 pos;
     private Vector3 new_pos;
     public bool net_stucked = false;
+    public bool isNearStuckedFish = false;
+    private string NEMO = "Player";
 
     // Start is called before the first frame update
     void Start()
@@ -23,13 +25,14 @@ public class NetStuckedFish : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Debug.Log("FreeFromNet " + net.freeFromNet);
         if (net.freeFromNet)
         {
             GetComponent<BoxCollider2D>().enabled = false;
             if (renderer.flipX)
-                rigid.velocity = new Vector2(-6f, 0f);
+                rigid.velocity = new Vector2(-3f, 0f);
             else
-                rigid.velocity = new Vector2(6f, 0f);
+                rigid.velocity = new Vector2(3f, 0f);
         }
 
         if(transform.position.x < -32 || transform.position.x > 32)
@@ -41,6 +44,22 @@ public class NetStuckedFish : MonoBehaviour
             transform.position = new_pos;
             net_stucked = true;
             pos = transform.position;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(NEMO))
+        {
+            isNearStuckedFish = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(NEMO))
+        {
+            isNearStuckedFish = false;
         }
     }
 }

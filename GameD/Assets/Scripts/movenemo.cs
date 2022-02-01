@@ -32,8 +32,6 @@ public class MoveNemo : MonoBehaviour
     private bool playerWon = false, gameOver = false;
     private int scoreCollect = 0;
 
-    private string NET_STUCKED_FISH = "NetStuckedFish";
-    public bool isNearStuckedFish = false;
     void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
@@ -160,7 +158,6 @@ public class MoveNemo : MonoBehaviour
 
         guideText.text = "Go near garbage and press \"2\" to collect it";
     }
-
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(GARBAGE))
@@ -168,14 +165,7 @@ public class MoveNemo : MonoBehaviour
             this.collision = collision;
             isNearGarbage = true;
         }
-
-        else if (collision.gameObject.CompareTag(NET_STUCKED_FISH))
-        {
-            isNearStuckedFish = true;
-            Debug.Log("Near");
-        }
     }
-
     //Just stop hitting a collider 2D
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -183,12 +173,6 @@ public class MoveNemo : MonoBehaviour
         if (collision.gameObject.CompareTag(GARBAGE))
         {
             isNearGarbage = false;
-        }
-
-        else if (collision.gameObject.CompareTag(NET_STUCKED_FISH))
-        {
-            isNearStuckedFish = false;
-            Debug.Log("Far");
         }
     }
 
