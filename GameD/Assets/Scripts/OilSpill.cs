@@ -14,6 +14,7 @@ public class OilSpill : MonoBehaviour
     private float movementSpeed; // gradual movement in oil
 
     private bool isSuckOilOn = false;
+    private bool isNearSpawnShip = false;
     private static float suckedInInt = 0;
 
     protected ProgressBar progressBar;
@@ -25,7 +26,8 @@ public class OilSpill : MonoBehaviour
     private static float scoreCollect = 0;
     private bool playerWon = false, gameOver = false;
 
-    private MoveNemo nemo;
+
+
 
 
     AudioSource gun;
@@ -35,7 +37,6 @@ public class OilSpill : MonoBehaviour
         guideText = GameObject.Find("Instruction_text_Bg").GetComponent<Text>();
         scoreText = GameObject.Find("Score_text").GetComponent<Text>();
         textTimer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
-        nemo = GameObject.Find("Nemo").GetComponent<MoveNemo>();
     }
 
     void Start()
@@ -62,9 +63,7 @@ public class OilSpill : MonoBehaviour
     }
     private void CheckGameOver()
     {
-        Scene scene = SceneManager.GetActiveScene();
-
-        if ((textTimer.text == "Game Over!" || gameOver) && scene.name == "Level 3")
+        if (textTimer.text == "Game Over!" || gameOver)
         {
             textTimer.text = string.Format("Game Over!");
             gameOver = true;
@@ -132,7 +131,7 @@ public class OilSpill : MonoBehaviour
                 playerWon = true;
                 gameOver = true;
                 CheckGameOver();
-
+                Debug.Log(playerWon + " + change playerwon");
             }
 
             // gradually suck the oil blob making it 
@@ -155,10 +154,11 @@ public class OilSpill : MonoBehaviour
 
         }
         // key press check for mother ship deposit
-        if (Input.GetKeyDown(KeyCode.Alpha9) && nemo.isNearSpawnShip)
+        if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             progressBar.BarValue = 0;
             suckedInInt = 0;
+
         }
     }
 

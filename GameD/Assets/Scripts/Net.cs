@@ -45,9 +45,12 @@ public class Net : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckGameOver();
+        transform.position = net_stucked_fish.transform.position;
+        //CheckGameOver();
         CheckKeyPress();
         CheckNextLevel();
+        if (textTimer.text == "Game Over!" && scoreText.text != "Score: 10")
+            guideText.text = "Alas, you lost.\nPress \"1\" to restart";
     }
 
     private void CheckKeyPress()
@@ -58,7 +61,6 @@ public class Net : MonoBehaviour
             return;
         }
 
-        transform.position = net_stucked_fish.transform.position;
         if (Input.GetKeyDown(KeyCode.Alpha3) && progressBar.BarValue < 100)
         {
             if (net_again.isNearStuckedFish)
@@ -70,7 +72,7 @@ public class Net : MonoBehaviour
                 scoreCollect += 1;
                 scoreText.text = "Score: " + scoreCollect;
 
-                if (scoreCollect >= 1f)
+                if (scoreCollect >= 10f)
                 {
                     playerWon = true;
                     gameOver = true;

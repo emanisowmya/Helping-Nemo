@@ -27,6 +27,11 @@ public class MoveNemo : MonoBehaviour
     public Text guideText, scoreText;
 
     [SerializeField]
+    private RectTransform help;
+
+    private bool open_help = false;
+
+    [SerializeField]
     private TextMeshProUGUI textTimer;
 
     public bool playerWon = false, gameOver = false;
@@ -34,6 +39,7 @@ public class MoveNemo : MonoBehaviour
 
     // for checking if nemo is spawn ship, can be used by oil spill so kept public
     public bool isNearSpawnShip = false;
+
 
     void Awake()
     {
@@ -148,6 +154,18 @@ public class MoveNemo : MonoBehaviour
             {
                 StartCoroutine(errorMessage());
             }
+        }
+        else if (Input.GetKeyDown(KeyCode.H))
+        {
+            open_help = !open_help;
+        }
+        if (open_help)
+        {
+            help.transform.position = new Vector3(help.transform.position.x, 0, 0);
+        }
+        else
+        {
+            help.transform.position = new Vector3(help.transform.position.x, -1000, 0);
         }
 
     }
