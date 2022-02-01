@@ -14,6 +14,8 @@ public class MoveNemo : MonoBehaviour
   private bool isNearGarbage = false;
   private Collision2D collision;
   private string GARBAGE = "Garbage";
+  //private string NET_STUCKED_FISH = "NetStuckedFish";
+  // public bool isNearStuckedFish = false;
 
   AudioSource garbage;
 
@@ -166,12 +168,11 @@ public class MoveNemo : MonoBehaviour
         isNearGarbage = true;
     }
 
-    else if (collision.gameObject.CompareTag(NET_STUCKED_FISH))
+    /*else if (collision.gameObject.CompareTag(NET_STUCKED_FISH))
     {
         isNearStuckedFish = true;
-        Debug.Log("Near");
-    }
-}
+    }*/
+  }
 
   //Just stop hitting a collider 2D
   private void OnCollisionExit2D(Collision2D collision)
@@ -182,11 +183,10 @@ public class MoveNemo : MonoBehaviour
         isNearGarbage = false;
     }
 
-    else if (collision.gameObject.CompareTag(NET_STUCKED_FISH))
+    /*else if (collision.gameObject.CompareTag(NET_STUCKED_FISH))
     {
         isNearStuckedFish = false;
-        Debug.Log("Far");
-    }
+    }*/
   }
 
 }

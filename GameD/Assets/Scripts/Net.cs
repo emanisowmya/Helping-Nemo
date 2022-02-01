@@ -8,8 +8,8 @@ public class Net : MonoBehaviour
     [SerializeField]
     private GameObject net_stucked_fish;
 
-    [SerializeField]
-    private MoveNemo nemo;
+    //[SerializeField]
+    //private MoveNemo nemo;
 
     [SerializeField]
     private NetStuckedFish net_again;
@@ -33,10 +33,11 @@ public class Net : MonoBehaviour
         transform.position = net_stucked_fish.transform.position;
         if(Input.GetKeyDown(KeyCode.Alpha4))
         {
-            if (nemo.isNearStuckedFish)
+            if (net_again.isNearStuckedFish)
             {
                 transform.localScale = new Vector3(0, 0, 0);
                 freeFromNet = true;
+                net_again.net_stucked = false;
             }
         }
         if (net_again.net_stucked)
