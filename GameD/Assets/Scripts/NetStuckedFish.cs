@@ -30,9 +30,9 @@ public class NetStuckedFish : MonoBehaviour
         {
             GetComponent<BoxCollider2D>().enabled = false;
             if (renderer.flipX)
-                rigid.velocity = new Vector2(-6f, 0f);
+                rigid.velocity = new Vector2(-3f, 0f);
             else
-                rigid.velocity = new Vector2(6f, 0f);
+                rigid.velocity = new Vector2(3f, 0f);
         }
 
         if(transform.position.x < -32 || transform.position.x > 32)
