@@ -114,10 +114,10 @@ public class OilSpill : MonoBehaviour
     movementSpeed = Random.Range(-blobbingSpeed, blobbingSpeed);
     transform.position += new Vector3(movementSpeed, movementSpeed, movementSpeed);
 
-    if (Input.GetKey(KeyCode.Alpha4) && isSuckOilOn && progressBar.BarValue < 100)
-    {
-      // audio
-      gun.Play();
+        if ((Input.GetKey(KeyCode.Alpha4) || Input.GetAxis("Mouse ScrollWheel") < 0f) && isSuckOilOn && progressBar.BarValue < 100)
+        {
+            // audio
+            gun.Play();
 
       // progress bar 
       suckedInInt += Time.deltaTime * 10;
