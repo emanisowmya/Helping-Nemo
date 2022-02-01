@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 423131547
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ce4bf2611cbec214595ad5fee5df1e47, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -95,5 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d60e7d9d3da87948a5d663796bfe47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  net_stucked_fish: {fileID: 0}
-  nemo: {fileID: 0}
+  net_stucked_fish: {fileID: 8421019689883642814}
+  net_again: {fileID: 0}
+  freeFromNet: 0

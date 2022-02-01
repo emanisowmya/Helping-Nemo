@@ -19,20 +19,18 @@ public class MoveNemo : MonoBehaviour
 
     AudioSource garbage;
 
-    [SerializeField]
-    protected ProgressBar Pb;
+    public ProgressBar Pb;
 
     [SerializeField]
     protected Image guideImage, scoreImage;
 
-    [SerializeField]
-    protected Text guideText, scoreText;
+    public Text guideText, scoreText;
 
     [SerializeField]
     private TextMeshProUGUI textTimer;
 
-    private bool playerWon = false, gameOver = false;
-    private int scoreCollect = 0;
+    public bool playerWon = false, gameOver = false;
+    public int scoreCollect = 0;
 
     // for checking if nemo is spawn ship, can be used by oil spill so kept public
     public bool isNearSpawnShip = false;
