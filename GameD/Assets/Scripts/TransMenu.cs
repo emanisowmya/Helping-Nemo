@@ -15,11 +15,20 @@ public class TransMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Return))
+        {
+            TaskOnClick();
+        }
     }
 
     void TaskOnClick()
     {
         SceneManager.LoadScene("Nemo Intro");
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("QUIT");
+        Application.Quit();
     }
 }
