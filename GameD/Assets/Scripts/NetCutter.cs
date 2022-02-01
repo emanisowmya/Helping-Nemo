@@ -25,7 +25,7 @@ public class NetCutter : MonoBehaviour
     void Update()
     {
         transform.position = nemo.transform.position;
-        if (Input.GetKey(KeyCode.Alpha4))
+        if (Input.GetKey(KeyCode.Alpha3))
         {
             if (_renderer.flipX)
                 transform.position = nemo.transform.position - speed * Time.deltaTime * (new Vector3(20f, 0, 0));
