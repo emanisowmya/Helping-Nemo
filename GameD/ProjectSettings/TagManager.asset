@@ -11,6 +11,7 @@ TagManager:
   - UI ProgressBar
   - Fish
   - SpawnShip
+  - Help
   layers:
   - Default
   - TransparentFX
