@@ -1,4 +1,9 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class OilSpill : MonoBehaviour
 {
@@ -9,14 +14,40 @@ public class OilSpill : MonoBehaviour
     private float movementSpeed; // gradual movement in oil
 
     private bool isSuckOilOn = false;
+    private bool isNearSpawnShip = false;
+    private static float suckedInInt = 0;
+
+    protected ProgressBar progressBar;
+    protected Text guideText, scoreText;
+    private TextMeshProUGUI textTimer;
+
+
+    // Game won/lost vars
+    private static float scoreCollect = 0;
+    private bool playerWon = false, gameOver = false;
+
+
+
+
 
     AudioSource gun;
+    private void Awake()
+    {
+        progressBar = GameObject.Find("UI ProgressBar").GetComponent<ProgressBar>();
+        guideText = GameObject.Find("Instruction_text_Bg").GetComponent<Text>();
+        scoreText = GameObject.Find("Score_text").GetComponent<Text>();
+        textTimer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
+    }
 
     void Start()
     {
         // Initialise the oil spill size randomly
         spillSize = Random.Range(1, 5);
         transform.localScale = new Vector3(2.5f * spillSize, spillSize, spillSize);
+
+        progressBar.BarValue = 0;
+
+        // Initate Audio sources
         gun = GetComponent<AudioSource>();
         gun.volume = 0.5f;
         gun.Stop();
@@ -25,6 +56,54 @@ public class OilSpill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckGameOver();
+        CheckKeyPress();
+        CheckNextLevel();
+
+    }
+    private void CheckGameOver()
+    {
+        if (textTimer.text == "Game Over!" || gameOver)
+        {
+            textTimer.text = string.Format("Game Over!");
+            gameOver = true;
+            if (playerWon)
+            {
+                guideText.text = "Congratulations, level complete.\nPress \"0\" to go to next level";
+            }
+            else
+            {
+                guideText.text = "Alas, you lost.\nPress \"1\" to restart";
+            }
+        }
+    }
+
+    private void CheckNextLevel()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            //print(scene.name[scene.name.Length-1]);
+            int bar = scene.name[scene.name.Length - 1] - '0';
+            if (bar < 5)
+                SceneManager.LoadScene("Level " + (bar + 1));
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            //print(scene.name[scene.name.Length-1]);
+            int bar = scene.name[scene.name.Length - 1] - '0';
+            SceneManager.LoadScene("Level " + bar);
+        }
+    }
+
+    private void CheckKeyPress()
+    {
+
+        if (gameOver)
+        {
+            return;
+        }
         // gradually keep making the oil blob bigger and bigger
         increaseSpeed = 0.0004f + Random.Range(-blobbingSpeed, blobbingSpeed);
         transform.localScale += new Vector3(increaseSpeed, increaseSpeed, increaseSpeed);
@@ -33,12 +112,30 @@ public class OilSpill : MonoBehaviour
         movementSpeed = Random.Range(-blobbingSpeed, blobbingSpeed);
         transform.position += new Vector3(movementSpeed, movementSpeed, movementSpeed);
 
-        if (Input.GetKey(KeyCode.Alpha3) && isSuckOilOn)
+        if (Input.GetKey(KeyCode.Alpha4) && isSuckOilOn && progressBar.BarValue < 100)
         {
-
-            // gradually suck the oil blob making it smaller
+            // audio
             gun.Play();
+
+            // progress bar 
+            suckedInInt += Time.deltaTime * 10;
+            progressBar.BarValue = (int)suckedInInt;
+
+            // scoring
+            scoreCollect += Time.deltaTime * 3;
+            scoreText.text = "Score: " + (int)scoreCollect;
+
+            if (scoreCollect >= 20)
+            {
+                Debug.Log(playerWon + " + change playerwon");
+                playerWon = true;
+                gameOver = true;
+                Debug.Log(playerWon + " + change playerwon");
+            }
+
+            // gradually suck the oil blob making it 
             transform.localScale -= new Vector3(2 * decreaseSpeed, decreaseSpeed, decreaseSpeed);
+
             // if oil size reaches zero, destroy object
             if (transform.localScale.y <= 0.1f)
             {
@@ -47,14 +144,22 @@ public class OilSpill : MonoBehaviour
             }
 
         }
-        else
+        else if (Input.GetKeyDown(KeyCode.Alpha4) && progressBar.BarValue == 100)
         {
-           // gun.Stop();
+            if (isSuckOilOn)
+            {
+                StartCoroutine(errorMessage());
+            }
+
         }
+        // key press check for mother ship deposit
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            progressBar.BarValue = 0;
+            suckedInInt = 0;
 
-
+        }
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -62,7 +167,6 @@ public class OilSpill : MonoBehaviour
         {
             // When triggered, oil can be sucked into nemo
             isSuckOilOn = true;
-            //Debug.Log("oil");
 
         }
     }
@@ -72,7 +176,20 @@ public class OilSpill : MonoBehaviour
         {
             // When leave the oil boundary, not able to suck now
             isSuckOilOn = false;
-
         }
     }
+
+
+    IEnumerator errorMessage()
+    {
+        //Print the time of when the function is first called.
+        guideText.text = "The collector is full.\ngo near ship and press \"9\" to release it.";
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(5);
+
+        guideText.text = "Go near oil and press \"4\" to collect it";
+    }
+
+
 }
