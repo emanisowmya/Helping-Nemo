@@ -1234,22 +1234,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1487847749274819869, guid: 953cb68951591174385bebc119b84f07, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.47
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487847749274819869, guid: 953cb68951591174385bebc119b84f07, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487847749444110498, guid: 953cb68951591174385bebc119b84f07, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -68.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487847749444110498, guid: 953cb68951591174385bebc119b84f07, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.32
-      objectReference: {fileID: 0}
     - target: {fileID: 1487847749559082130, guid: 953cb68951591174385bebc119b84f07, type: 3}
       propertyPath: m_Name
       value: GameBoundary
