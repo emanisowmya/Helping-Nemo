@@ -40,6 +40,8 @@ public class Net : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
+    scoreCollect = 0;
+    progressBar.BarValue = 0;
 
   }
 
@@ -78,6 +80,7 @@ public class Net : MonoBehaviour
         {
           progressBar.BarValue += 5;
         }
+
         scoreCollect += 1;
         scoreText.text = "Score: " + scoreCollect;
 
@@ -115,7 +118,7 @@ public class Net : MonoBehaviour
       }
       else
       {
-        guideText.text = "Alas net, you lost.\nPress \"1\" to restart";
+        guideText.text = "Alas, you lost.\nPress \"1\" to restart";
       }
     }
   }

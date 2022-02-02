@@ -17,7 +17,6 @@ public class OilSpill : MonoBehaviour
   private bool isNearSpawnShip = false;
   private static float suckedInInt = 0;
 
-  [SerializeField]
   protected ProgressBar progressBar;
 
   [SerializeField]
@@ -36,6 +35,7 @@ public class OilSpill : MonoBehaviour
   AudioSource gun;
   private void Awake()
   {
+    progressBar = GameObject.Find("UI ProgressBar Oil").GetComponent<ProgressBar>();
     guideText = GameObject.Find("Instruction_text_Bg").GetComponent<Text>();
     textTimer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
   }
@@ -46,6 +46,8 @@ public class OilSpill : MonoBehaviour
     spillSize = Random.Range(1, 5);
     transform.localScale = new Vector3(2.5f * spillSize, spillSize, spillSize);
 
+    scoreCollect = 0;
+    suckedInInt = 0;
     progressBar.BarValue = 0;
 
     // Initate Audio sources
@@ -75,7 +77,7 @@ public class OilSpill : MonoBehaviour
       }
       else
       {
-        guideText.text = "Alas, oil you lost.\nPress \"1\" to restart";
+        guideText.text = "Alas, you lost.\nPress \"1\" to restart";
       }
     }
   }

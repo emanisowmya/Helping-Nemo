@@ -210,7 +210,7 @@ public class MoveNemo : MonoBehaviour
           playerWon = true;
           gameOver = true;
         }
-        
+
       }
     }
     else if (Input.GetKeyDown(KeyCode.Alpha2) && Pb.BarValue == 100)
@@ -237,14 +237,21 @@ public class MoveNemo : MonoBehaviour
 
   IEnumerator errorMessage()
   {
+    Scene scene = SceneManager.GetActiveScene();
 
     //Print the time of when the function is first called.
     guideText.text = "The collector is full.\ngo near ship and press \"9\" to release it.";
 
     //yield on a new YieldInstruction that waits for 5 seconds.
     yield return new WaitForSeconds(5);
-
-    guideText.text = "Go near garbage and press \"2\" to collect it";
+    
+    if(scene.name == "Level 1"){
+      guideText.text = "Go near garbage and press \"2\" to collect it";
+    }else if(scene.name == "Level 4"){
+      guideText.text = "Collect 20 garbage, 30 gallan oil and save 10 animals";
+    }else if(scene.name == "Level 5"){
+      guideText.text = "Collect 30 garbage, 60 gallan oil and save 20 animals";
+    }
   }
   void OnCollisionEnter2D(Collision2D collision)
   {
