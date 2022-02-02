@@ -97,9 +97,32 @@ public class MoveNemo : MonoBehaviour
         gameOver = true;
       }
     }
-    else if (scene.name == "Level 4" || scene.name == "Level 5")
+    else if (scene.name == "Level 4")
     {
-      if (textTimer.text == "Game Over!" || (scoreText_animal.text == "Score: 10" && scoreText_oil.text == "Score: 30" && gameOver))
+      if (textTimer.text == "Game Over!" || (scoreText_animal.text == "Score: 10" &&
+          scoreText_oil.text == "Score: 30" &&
+          gameOver))
+      {
+        baki_left = false;
+        gameOver = true;
+        if (playerWon)
+        {
+          guideText.text = "Congratulations, level complete.\nPress \"0\" to go to next level";
+        }
+        else
+        {
+          guideText.text = "Alas, you lost.\nPress \"1\" to restart";
+        }
+      }
+      else
+      {
+        baki_left = true;
+      }
+    }else if (scene.name == "Level 5")
+    {
+      if (textTimer.text == "Game Over!" || (scoreText_animal.text == "Score: 20" &&
+          scoreText_oil.text == "Score: 60" &&
+          gameOver))
       {
         baki_left = false;
         gameOver = true;
@@ -166,7 +189,9 @@ public class MoveNemo : MonoBehaviour
     {
       return;
     }
-    // key press check
+
+    Scene scene = SceneManager.GetActiveScene();
+
     if (Input.GetKeyDown(KeyCode.Alpha2) && Pb.BarValue < 100)
     {
       if (isNearGarbage)
@@ -176,11 +201,16 @@ public class MoveNemo : MonoBehaviour
         Pb.BarValue += 10;
         scoreCollect += 1;
         scoreText.text = "Score: " + scoreCollect;
-        if (scoreCollect >= 20)
+
+        if (!(scene.name == "Level 5") && scoreCollect >= 20)
         {
           playerWon = true;
           gameOver = true;
+        }else if(scoreCollect >= 30){
+          playerWon = true;
+          gameOver = true;
         }
+        
       }
     }
     else if (Input.GetKeyDown(KeyCode.Alpha2) && Pb.BarValue == 100)

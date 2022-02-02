@@ -61,6 +61,7 @@ public class Net : MonoBehaviour
       return;
     }
 
+    Scene scene = SceneManager.GetActiveScene();
     if (Input.GetKeyDown(KeyCode.Alpha3) && progressBar.BarValue < 100)
     {
       if (net_again.isNearStuckedFish)
@@ -68,11 +69,24 @@ public class Net : MonoBehaviour
         transform.localScale = new Vector3(0, 0, 0);
         freeFromNet = true;
         net_again.net_stucked = false;
-        progressBar.BarValue += 10;
+
+        if (!(scene.name == "Level 5"))
+        {
+          progressBar.BarValue += 10;
+        }
+        else
+        {
+          progressBar.BarValue += 5;
+        }
         scoreCollect += 1;
         scoreText.text = "Score: " + scoreCollect;
 
-        if (scoreCollect >= 10f)
+        if (!(scene.name == "Level 5") && scoreCollect >= 10)
+        {
+          playerWon = true;
+          gameOver = true;
+        }
+        else if (scoreCollect >= 20)
         {
           playerWon = true;
           gameOver = true;
@@ -90,7 +104,7 @@ public class Net : MonoBehaviour
   private void CheckGameOver()
   {
     Scene scene = SceneManager.GetActiveScene();
-    if (scene.name == "Level 2" &&(textTimer.text == "Game Over!" || gameOver))
+    if (scene.name == "Level 2" && (textTimer.text == "Game Over!" || gameOver))
     {
       gameOver = true;
 

@@ -106,6 +106,9 @@ public class OilSpill : MonoBehaviour
     {
       return;
     }
+
+    Scene scene = SceneManager.GetActiveScene();
+
     // gradually keep making the oil blob bigger and bigger
     increaseSpeed = 0.0004f + Random.Range(-blobbingSpeed, blobbingSpeed);
     transform.localScale += new Vector3(increaseSpeed, increaseSpeed, increaseSpeed);
@@ -114,24 +117,37 @@ public class OilSpill : MonoBehaviour
     movementSpeed = Random.Range(-blobbingSpeed, blobbingSpeed);
     transform.position += new Vector3(movementSpeed, movementSpeed, movementSpeed);
 
-        if ((Input.GetKey(KeyCode.Alpha4) || Input.GetAxis("Mouse ScrollWheel") < 0f) && isSuckOilOn && progressBar.BarValue < 100)
-        {
-            // audio
-            gun.Play();
+    if ((Input.GetKey(KeyCode.Alpha4) || Input.GetAxis("Mouse ScrollWheel") < 0f) && isSuckOilOn && progressBar.BarValue < 100)
+    {
+      // audio
+      gun.Play();
 
       // progress bar 
-      suckedInInt += Time.deltaTime * 10;
-      progressBar.BarValue = (int)suckedInInt;
 
+      if (!(scene.name == "Level 5"))
+      {
+        suckedInInt += Time.deltaTime * 10;
+        progressBar.BarValue = (int)suckedInInt;
+      }
+      else
+      {
+
+        suckedInInt += Time.deltaTime * 5;
+        progressBar.BarValue = (int)suckedInInt;
+      }
       // scoring
       scoreCollect += Time.deltaTime * 3;
       scoreText.text = "Score: " + (int)scoreCollect;
 
-      if ((int)scoreCollect >= 30f)
+      if (!(scene.name == "Level 5") && scoreCollect >= 30)
       {
         playerWon = true;
         gameOver = true;
-        CheckGameOver();
+      }
+      else if (scoreCollect >= 60)
+      {
+        playerWon = true;
+        gameOver = true;
       }
 
       // gradually suck the oil blob making it 
