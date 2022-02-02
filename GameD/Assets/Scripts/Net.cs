@@ -29,7 +29,11 @@ public class Net : MonoBehaviour
 
   public bool freeFromNet = false;
 
-  void Awake()
+    public Animator transition;
+
+    public GameObject levelLoader;
+
+    void Awake()
   {
     progressBar = GameObject.Find("UI ProgressBar Animal Save").GetComponent<ProgressBar>();
     guideText = GameObject.Find("Instruction_text_Bg").GetComponent<Text>();
@@ -123,26 +127,41 @@ public class Net : MonoBehaviour
     }
   }
 
-  private void CheckNextLevel()
-  {
-    if (!gameOver)
+    private void CheckNextLevel()
     {
-      return;
+        if (!gameOver)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
+        {
+            levelLoader.active = true;
+            loadNextLevel();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            //print(scene.name[scene.name.Length-1]);
+            int bar = scene.name[scene.name.Length - 1] - '0';
+            SceneManager.LoadScene("Level " + bar);
+        }
     }
-    if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
+
+    private void loadNextLevel()
     {
-      Scene scene = SceneManager.GetActiveScene();
-      //print(scene.name[scene.name.Length-1]);
-      int bar = scene.name[scene.name.Length - 1] - '0';
-      if (bar < 5)
-        SceneManager.LoadScene("Level " + (bar + 1));
+        StartCoroutine(LoadLevel());
     }
-    else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
+
+    IEnumerator LoadLevel()
     {
-      Scene scene = SceneManager.GetActiveScene();
-      //print(scene.name[scene.name.Length-1]);
-      int bar = scene.name[scene.name.Length - 1] - '0';
-      SceneManager.LoadScene("Level " + bar);
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1);
+
+        Scene scene = SceneManager.GetActiveScene();
+        //print(scene.name[scene.name.Length-1]);
+        int bar = scene.name[scene.name.Length - 1] - '0';
+        if (bar < 5)
+            SceneManager.LoadScene("Level " + (bar + 1));
     }
-  }
 }

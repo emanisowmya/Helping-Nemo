@@ -41,6 +41,10 @@ public class MoveNemo : MonoBehaviour
   public bool isNearSpawnShip = false;
 
 
+    public Animator transition;
+
+    public GameObject levelLoader;
+
   void Awake()
   {
     myBody = GetComponent<Rigidbody2D>();
@@ -141,15 +145,14 @@ public class MoveNemo : MonoBehaviour
       }
     }
   }
+
+ 
   private void CheckNextLevel()
   {
     if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
     {
-      Scene scene = SceneManager.GetActiveScene();
-      //print(scene.name[scene.name.Length-1]);
-      int bar = scene.name[scene.name.Length - 1] - '0';
-      if (bar < 5)
-        SceneManager.LoadScene("Level " + (bar + 1));
+            levelLoader.active = true;
+            loadNextLevel();
     }
     else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
     {
@@ -159,6 +162,24 @@ public class MoveNemo : MonoBehaviour
       SceneManager.LoadScene("Level " + bar);
     }
   }
+    
+  private void loadNextLevel()
+    {
+        StartCoroutine(LoadLevel());
+    }
+
+    IEnumerator LoadLevel()
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1);
+
+        Scene scene = SceneManager.GetActiveScene();
+        //print(scene.name[scene.name.Length-1]);
+        int bar = scene.name[scene.name.Length - 1] - '0';
+        if (bar < 5)
+            SceneManager.LoadScene("Level " + (bar + 1));
+    }
   private void MoveNemoShip()
   {
     if (!baki_left && gameOver)

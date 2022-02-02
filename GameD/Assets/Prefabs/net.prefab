@@ -97,4 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   net_stucked_fish: {fileID: 8421019689883642814}
   net_again: {fileID: 0}
+  nemo: {fileID: 0}
   freeFromNet: 0
+  transition: {fileID: 0}
+  levelLoader: {fileID: 3078853173763103613, guid: 70d06b23b27a63a44b9c84a31384678a, type: 3}

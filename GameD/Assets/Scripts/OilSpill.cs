@@ -28,11 +28,14 @@ public class OilSpill : MonoBehaviour
   private static float scoreCollect = 0;
   private bool playerWon = false, gameOver = false;
 
+    public Animator transition;
+
+    public GameObject levelLoader;
 
 
 
 
-  AudioSource gun;
+    AudioSource gun;
   private void Awake()
   {
     progressBar = GameObject.Find("UI ProgressBar Oil").GetComponent<ProgressBar>();
@@ -82,26 +85,41 @@ public class OilSpill : MonoBehaviour
     }
   }
 
-  private void CheckNextLevel()
-  {
-    if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
+    private void CheckNextLevel()
     {
-      Scene scene = SceneManager.GetActiveScene();
-      //print(scene.name[scene.name.Length-1]);
-      int bar = scene.name[scene.name.Length - 1] - '0';
-      if (bar < 5)
-        SceneManager.LoadScene("Level " + (bar + 1));
+        if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
+        {
+            levelLoader.active = true;
+            loadNextLevel();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            //print(scene.name[scene.name.Length-1]);
+            int bar = scene.name[scene.name.Length - 1] - '0';
+            SceneManager.LoadScene("Level " + bar);
+        }
     }
-    else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
-    {
-      Scene scene = SceneManager.GetActiveScene();
-      //print(scene.name[scene.name.Length-1]);
-      int bar = scene.name[scene.name.Length - 1] - '0';
-      SceneManager.LoadScene("Level " + bar);
-    }
-  }
 
-  private void CheckKeyPress()
+    private void loadNextLevel()
+    {
+        StartCoroutine(LoadLevel());
+    }
+
+    IEnumerator LoadLevel()
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1);
+
+        Scene scene = SceneManager.GetActiveScene();
+        //print(scene.name[scene.name.Length-1]);
+        int bar = scene.name[scene.name.Length - 1] - '0';
+        if (bar < 5)
+            SceneManager.LoadScene("Level " + (bar + 1));
+    }
+
+    private void CheckKeyPress()
   {
 
     if (gameOver)
