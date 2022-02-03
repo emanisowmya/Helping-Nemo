@@ -28,14 +28,14 @@ public class OilSpill : MonoBehaviour
   private static float scoreCollect = 0;
   private bool playerWon = false, gameOver = false;
 
-    public Animator transition;
+  public Animator transition;
 
-    public GameObject levelLoader;
-
-
+  public GameObject levelLoader;
 
 
-    AudioSource gun;
+
+
+  AudioSource gun;
   private void Awake()
   {
     progressBar = GameObject.Find("UI ProgressBar Oil").GetComponent<ProgressBar>();
@@ -66,6 +66,13 @@ public class OilSpill : MonoBehaviour
     CheckKeyPress();
     CheckNextLevel();
 
+    if (textTimer.text == "Time Increased")
+    {
+      scoreCollect = 0;
+      suckedInInt = 0;
+      progressBar.BarValue = 0;
+      gameOver = false;
+    }
   }
   private void CheckGameOver()
   {
@@ -85,41 +92,41 @@ public class OilSpill : MonoBehaviour
     }
   }
 
-    private void CheckNextLevel()
+  private void CheckNextLevel()
+  {
+    if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
-        {
-            levelLoader.active = true;
-            loadNextLevel();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
-        {
-            Scene scene = SceneManager.GetActiveScene();
-            //print(scene.name[scene.name.Length-1]);
-            int bar = scene.name[scene.name.Length - 1] - '0';
-            SceneManager.LoadScene("Level " + bar);
-        }
+      levelLoader.active = true;
+      loadNextLevel();
     }
-
-    private void loadNextLevel()
+    else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
     {
-        StartCoroutine(LoadLevel());
+      Scene scene = SceneManager.GetActiveScene();
+      //print(scene.name[scene.name.Length-1]);
+      int bar = scene.name[scene.name.Length - 1] - '0';
+      SceneManager.LoadScene("Level " + bar);
     }
+  }
 
-    IEnumerator LoadLevel()
-    {
-        transition.SetTrigger("Start");
+  private void loadNextLevel()
+  {
+    StartCoroutine(LoadLevel());
+  }
 
-        yield return new WaitForSeconds(1);
+  IEnumerator LoadLevel()
+  {
+    transition.SetTrigger("Start");
 
-        Scene scene = SceneManager.GetActiveScene();
-        //print(scene.name[scene.name.Length-1]);
-        int bar = scene.name[scene.name.Length - 1] - '0';
-        if (bar < 5)
-            SceneManager.LoadScene("Level " + (bar + 1));
-    }
+    yield return new WaitForSeconds(1);
 
-    private void CheckKeyPress()
+    Scene scene = SceneManager.GetActiveScene();
+    //print(scene.name[scene.name.Length-1]);
+    int bar = scene.name[scene.name.Length - 1] - '0';
+    if (bar < 5)
+      SceneManager.LoadScene("Level " + (bar + 1));
+  }
+
+  private void CheckKeyPress()
   {
 
     if (gameOver)

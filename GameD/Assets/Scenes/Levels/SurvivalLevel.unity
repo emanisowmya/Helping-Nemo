@@ -201,7 +201,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Collect 30 garbage, 60 gallan oil and save 20 animals
+  m_Text: Collect items till given maximum capacity, once all are full you will get
+    20 sec extra
 --- !u!1 &40184516
 GameObject:
   m_ObjectHideFlags: 0

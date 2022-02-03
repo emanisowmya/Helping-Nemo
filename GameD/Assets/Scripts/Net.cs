@@ -57,6 +57,12 @@ public class Net : MonoBehaviour
     CheckKeyPress();
     CheckNextLevel();
     CheckGameOver();
+
+    if(textTimer.text == "Time Increased"){
+      scoreCollect = 0;
+      progressBar.BarValue = 0;
+      gameOver = false;
+    }
   }
 
   private void CheckKeyPress()
