@@ -69,116 +69,114 @@ public class Net : MonoBehaviour
     }
   }
 
-  private void CheckKeyPress()
-  {
-
-    if (gameOver)
+    private void CheckKeyPress()
     {
-      return;
-    }
 
-    if(Input.GetKeyDown(KeyCode.Alpha3))
+        if (gameOver)
+        {
+            return;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha3))
         {
             knife.Play();
         }
-    Scene scene = SceneManager.GetActiveScene();
-    if (Input.GetKeyDown(KeyCode.Alpha3) && progressBar.BarValue < 100)
-    {
-      if (net_again.isNearStuckedFish)
-      {
-        transform.localScale = new Vector3(0, 0, 0);
-        freeFromNet = true;
-        net_again.net_stucked = false;
-
-        if (!(scene.name == "Level 5"))
-        {
-          progressBar.BarValue += 10;
-        }
-        else
-        {
-          progressBar.BarValue += 5;
-        }
-
 
         Scene scene = SceneManager.GetActiveScene();
         if (Input.GetKeyDown(KeyCode.Alpha3) && progressBar.BarValue < 100)
-        scoreCollect += 1;
-        scoreText.text = "Score: " + scoreCollect;
-
-        if (!(scene.name == "Level 5") && scoreCollect >= 10)
         {
-          playerWon = true;
-          gameOver = true;
+            if (net_again.isNearStuckedFish)
+            {
+                transform.localScale = new Vector3(0, 0, 0);
+                freeFromNet = true;
+                net_again.net_stucked = false;
+
+                if (!(scene.name == "Level 5"))
+                {
+                    progressBar.BarValue += 10;
+                }
+                else
+                {
+                    progressBar.BarValue += 5;
+                }
+
+                scoreCollect += 1;
+                scoreText.text = "Score: " + scoreCollect;
+
+                if (!(scene.name == "Level 5") && scoreCollect >= 10)
+                {
+                    playerWon = true;
+                    gameOver = true;
+                }
+                else if (scoreCollect >= 20)
+                {
+                    playerWon = true;
+                    gameOver = true;
+                }
+
+            }
         }
-        else if (scoreCollect >= 20)
+        if (net_again.net_stucked)
         {
-          playerWon = true;
-          gameOver = true;
+            transform.localScale = new Vector3(0.3f, 0.3f, 1f);
+            freeFromNet = false;
         }
-
-      }
     }
-    if (net_again.net_stucked)
+
+    private void CheckGameOver()
     {
-      transform.localScale = new Vector3(0.3f, 0.3f, 1f);
-      freeFromNet = false;
-    }
-  }
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level 2" && (textTimer.text == "Game Over!" || gameOver))
+        {
+            gameOver = true;
 
-  private void CheckGameOver()
-  {
-    Scene scene = SceneManager.GetActiveScene();
-    if (scene.name == "Level 2" && (textTimer.text == "Game Over!" || gameOver))
+
+            if (scoreText.text == "Score: 10")
+            {
+                guideText.text = "Congratulations, level complete.\nPress \"0\" to go to next level";
+            }
+            else
+            {
+                guideText.text = "Alas, you lost.\nPress \"1\" to restart";
+            }
+        }
+    }
+
+    private void CheckNextLevel()
     {
-      gameOver = true;
-
-
-      if (scoreText.text == "Score: 10")
-      {
-        guideText.text = "Congratulations, level complete.\nPress \"0\" to go to next level";
-      }
-      else
-      {
-        guideText.text = "Alas, you lost.\nPress \"1\" to restart";
-      }
+        if (!gameOver)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
+        {
+            levelLoader.active = true;
+            loadNextLevel();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            //print(scene.name[scene.name.Length-1]);
+            int bar = scene.name[scene.name.Length - 1] - '0';
+            SceneManager.LoadScene("Level " + bar);
+        }
     }
-  }
 
-  private void CheckNextLevel()
-  {
-    if (!gameOver)
+    private void loadNextLevel()
     {
-      return;
+        StartCoroutine(LoadLevel());
     }
-    if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
+
+    IEnumerator LoadLevel()
     {
-      levelLoader.active = true;
-      loadNextLevel();
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1);
+
+        Scene scene = SceneManager.GetActiveScene();
+        //print(scene.name[scene.name.Length-1]);
+        int bar = scene.name[scene.name.Length - 1] - '0';
+        if (bar < 5)
+            SceneManager.LoadScene("Level " + (bar + 1));
     }
-    else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
-    {
-      Scene scene = SceneManager.GetActiveScene();
-      //print(scene.name[scene.name.Length-1]);
-      int bar = scene.name[scene.name.Length - 1] - '0';
-      SceneManager.LoadScene("Level " + bar);
-    }
-  }
-
-  private void loadNextLevel()
-  {
-    StartCoroutine(LoadLevel());
-  }
-
-  IEnumerator LoadLevel()
-  {
-    transition.SetTrigger("Start");
-
-    yield return new WaitForSeconds(1);
-
-    Scene scene = SceneManager.GetActiveScene();
-    //print(scene.name[scene.name.Length-1]);
-    int bar = scene.name[scene.name.Length - 1] - '0';
-    if (bar < 5)
-      SceneManager.LoadScene("Level " + (bar + 1));
-  }
 }

@@ -9,15 +9,20 @@ public class StartShip : MonoBehaviour
   private int speed = 2;
   private float start;
   private float end;
-  void Start()
+    AudioSource ship;
+    void Start()
   {
     Vector2 pos = transform.position;
     start = pos.x;
     end = pos.y;
-  }
+    ship = GetComponent<AudioSource>();
+    ship.volume = 0.5f;
+    ship.Play();
 
-  // Update is called once per frame
-  void Update()
+    }
+
+    // Update is called once per frame
+    void Update()
   {
     Vector2 pos = transform.position;
     if (pos.x <= -start)
