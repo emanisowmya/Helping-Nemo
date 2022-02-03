@@ -134,6 +134,7 @@ public class MoveNemo : MonoBehaviour
           scoreText_oil.text == "Score: 60" &&
           gameOver))
       {
+        Debug.Log("Enter");
         textTimer.text = "Game Over!";
         baki_left = false;
         gameOver = true;
@@ -169,6 +170,7 @@ public class MoveNemo : MonoBehaviour
       else if (textTimer.text == "Game Over!")
       {
         gameOver = true;
+        baki_left = false;
         guideText.text = "Congratulations, You have made it this far.\nPress \"1\" to restart";
 
       }
