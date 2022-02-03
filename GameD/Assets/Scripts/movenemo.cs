@@ -155,7 +155,8 @@ public class MoveNemo : MonoBehaviour
     {
       if ((scoreText_animal.text == "Score: 10" &&
           scoreText_oil.text == "Score: 30" &&
-          gameOver))
+          gameOver)
+          )
       {
         gameOver = false;
         baki_left = false;
@@ -169,6 +170,7 @@ public class MoveNemo : MonoBehaviour
       else if (textTimer.text == "Game Over!")
       {
         gameOver = true;
+        baki_left = false;
         guideText.text = "Congratulations, You have made it this far.\nPress \"1\" to restart";
 
       }
