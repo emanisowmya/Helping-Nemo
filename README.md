@@ -1,7 +1,8 @@
 # Helping Nemo (*Be a Rambo, to our Nemo*)
 Helping Nemo is a game designed to help save water resources from getting polluted.
 
-## About
+# About
+## The Game
 ### Description
 Helping Nemo is a game designed to help save water resources from getting polluted. We tried to capture types of pollution possible underwater and tried to spread awareness to the users about it.
 The significant problems we focus on are garbage thrown in the water, oil spills that happen due to the factories, and the underwater animals that get stuck in the nets and plastics.
@@ -15,4 +16,18 @@ Since the game is WebGL format, it can be played in any modern browser and is su
 
 ### The link
 [https://simmer.io/@AMITKESARI2000/nemo](https://simmer.io/@AMITKESARI2000/nemo)
+
+### system requirements
+The minimum required ram is 4 GB.
+Recent CPU and Video card with updated drivers
+latest version for any of the following websites:-
+-Chrome
+-Frefox
+-Safari
+-Edge
+
+## The Code
+###required software
+unity engine with WebGl module
+github(like github desktop)
 
