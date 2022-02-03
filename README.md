@@ -71,7 +71,7 @@ latest version for any of the following websites:-
 - In this level, Nemo has to collect garbage, rescue turtles and suck spilled oil with increased difficulty.
 - To pass this level, Nemo has to cross a threshold score with a more strict time limit.
 
-###Survival Mode
+### Survival Mode
 In development.
 
 ## The Code
