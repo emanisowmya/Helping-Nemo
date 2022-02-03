@@ -419,7 +419,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1793882539}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 149d864443ddca94ba93b092e7acd5ea, type: 3}
   m_Name: 
@@ -2466,7 +2466,7 @@ GameObject:
   - component: {fileID: 1709298828}
   - component: {fileID: 1709298829}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: ScoreText_animal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3354,11 +3354,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1425009137330213133, guid: 5d7720695f3a7414bb841835da0c935a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 292.74
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1425009137330213133, guid: 5d7720695f3a7414bb841835da0c935a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 151.82
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1425009137330213133, guid: 5d7720695f3a7414bb841835da0c935a, type: 3}
       propertyPath: m_LocalPosition.x

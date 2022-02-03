@@ -35,7 +35,7 @@ public class Net : MonoBehaviour
     {
         progressBar = GameObject.Find("UI ProgressBar Animal Save").GetComponent<ProgressBar>();
         guideText = GameObject.Find("InstructionTextBg").GetComponent<TextMeshProUGUI>();
-        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+        scoreText = GameObject.Find("ScoreText_animal").GetComponent<TextMeshProUGUI>();
         textTimer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
     }
 

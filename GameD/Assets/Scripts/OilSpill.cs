@@ -2,7 +2,6 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 
 public class OilSpill : MonoBehaviour
@@ -19,7 +18,7 @@ public class OilSpill : MonoBehaviour
     protected ProgressBar progressBar;
 
     [SerializeField]
-    protected Text guideText, scoreText;
+    protected TextMeshProUGUI guideText, scoreText;
     private TextMeshProUGUI textTimer;
 
 
@@ -38,7 +37,8 @@ public class OilSpill : MonoBehaviour
     private void Awake()
     {
         progressBar = GameObject.Find("UI ProgressBar Oil").GetComponent<ProgressBar>();
-        guideText = GameObject.Find("Instruction_text_Bg").GetComponent<Text>();
+        guideText = GameObject.Find("InstructionTextBg").GetComponent<TextMeshProUGUI>();
+        scoreText = GameObject.Find("ScoreText_oil").GetComponent<TextMeshProUGUI>();
         textTimer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
     }
 
