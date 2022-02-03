@@ -1,4 +1,4 @@
-# Helping Nemo (*Be a Rambo, to our Nemo*)
+# Helping Nemo > Be a Rambo, to our Nemo
 Helping Nemo is a game designed to help save water resources from getting polluted.
 
 ## Description
@@ -11,3 +11,5 @@ Another thing to note is that we made all game assets pixelated, but the garbage
 For the development of this game, the Unity Framework was used. To program the scripts and control the logic of the programs, C# was used as it is compatible with Unity and follows OOPS concepts.
 For deployment, we used WebGl format to be deployed and played on websites. For hosting, simmer.io was used for its easy and on the go deployment features.
 Since the game is WebGL format, it can be played in any modern browser and is supported by all platforms.
+
+### The link
