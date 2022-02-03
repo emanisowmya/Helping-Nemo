@@ -21,13 +21,32 @@ Since the game is WebGL format, it can be played in any modern browser and is su
 The minimum required ram is 4 GB.
 Recent CPU and Video card with updated drivers
 latest version for any of the following websites:-
--Chrome
--Frefox
--Safari
--Edge
+- Chrome
+- Frefox
+- Safari
+- Edge
+
+## The Game Elements
+## Characters
+### Nemo
+ - Main Character
+ - Fish friendly
+ - Can collect garbages from the ocean.
+ - Can rescue turtles by cutting nets.
+ - Can suck oil spilled in the ocean.
+ - Can blast off pulses
+### Ship
+ - Spawns Nemo and drops it
+ - Store garbages and oil collected by Nemo
+
 
 ## The Code
-###required software
+### Language
+the code is primarily made with C# 
+### required software
 unity engine with WebGl module
 github(like github desktop)
+### 
+
+
 
