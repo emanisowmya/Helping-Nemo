@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
 
 public class Net : MonoBehaviour
 {
@@ -13,7 +11,7 @@ public class Net : MonoBehaviour
 
   protected ProgressBar progressBar;
 
-  protected Text guideText, scoreText;
+  protected TextMeshProUGUI guideText, scoreText;
   private TextMeshProUGUI textTimer;
 
 
@@ -29,15 +27,15 @@ public class Net : MonoBehaviour
 
   public bool freeFromNet = false;
 
-    public Animator transition;
+  public Animator transition;
 
-    public GameObject levelLoader;
+  public GameObject levelLoader;
 
-    void Awake()
+  void Awake()
   {
     progressBar = GameObject.Find("UI ProgressBar Animal Save").GetComponent<ProgressBar>();
-    guideText = GameObject.Find("Instruction_text_Bg").GetComponent<Text>();
-    scoreText = GameObject.Find("Score_text").GetComponent<Text>();
+    guideText = GameObject.Find("InstructionTextBg").GetComponent<TextMeshProUGUI>();
+    scoreText = GameObject.Find("ScoreText_animal").GetComponent<TextMeshProUGUI>();
     textTimer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
   }
 
@@ -58,7 +56,8 @@ public class Net : MonoBehaviour
     CheckNextLevel();
     CheckGameOver();
 
-    if(textTimer.text == "Time Increased"){
+    if (textTimer.text == "Time Increased")
+    {
       scoreCollect = 0;
       progressBar.BarValue = 0;
       gameOver = false;
@@ -133,41 +132,41 @@ public class Net : MonoBehaviour
     }
   }
 
-    private void CheckNextLevel()
+  private void CheckNextLevel()
+  {
+    if (!gameOver)
     {
-        if (!gameOver)
-        {
-            return;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
-        {
-            levelLoader.active = true;
-            loadNextLevel();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
-        {
-            Scene scene = SceneManager.GetActiveScene();
-            //print(scene.name[scene.name.Length-1]);
-            int bar = scene.name[scene.name.Length - 1] - '0';
-            SceneManager.LoadScene("Level " + bar);
-        }
+      return;
     }
-
-    private void loadNextLevel()
+    if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
     {
-        StartCoroutine(LoadLevel());
+      levelLoader.active = true;
+      loadNextLevel();
     }
-
-    IEnumerator LoadLevel()
+    else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
     {
-        transition.SetTrigger("Start");
-
-        yield return new WaitForSeconds(1);
-
-        Scene scene = SceneManager.GetActiveScene();
-        //print(scene.name[scene.name.Length-1]);
-        int bar = scene.name[scene.name.Length - 1] - '0';
-        if (bar < 5)
-            SceneManager.LoadScene("Level " + (bar + 1));
+      Scene scene = SceneManager.GetActiveScene();
+      //print(scene.name[scene.name.Length-1]);
+      int bar = scene.name[scene.name.Length - 1] - '0';
+      SceneManager.LoadScene("Level " + bar);
     }
+  }
+
+  private void loadNextLevel()
+  {
+    StartCoroutine(LoadLevel());
+  }
+
+  IEnumerator LoadLevel()
+  {
+    transition.SetTrigger("Start");
+
+    yield return new WaitForSeconds(1);
+
+    Scene scene = SceneManager.GetActiveScene();
+    //print(scene.name[scene.name.Length-1]);
+    int bar = scene.name[scene.name.Length - 1] - '0';
+    if (bar < 5)
+      SceneManager.LoadScene("Level " + (bar + 1));
+  }
 }

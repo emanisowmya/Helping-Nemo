@@ -24,7 +24,7 @@ public class MoveNemo : MonoBehaviour
   [SerializeField]
   protected Image guideImage, scoreImage;
 
-  public Text guideText, scoreText, scoreText_animal, scoreText_oil;
+  public TextMeshProUGUI guideText, scoreText, scoreText_animal, scoreText_oil;
 
   [SerializeField]
   private RectTransform help;
