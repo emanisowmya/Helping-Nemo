@@ -1,5 +1,4 @@
-# Helping Nemo 
-> Be a Rambo, to our Nemo
+# Helping Nemo (*Be a Rambo, to our Nemo*)
 Helping Nemo is a game designed to help save water resources from getting polluted.
 
 ## Description
