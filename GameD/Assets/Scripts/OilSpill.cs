@@ -12,11 +12,12 @@ public class OilSpill : MonoBehaviour
   private float increaseSpeed; // gradual increase in oil
   private float movementSpeed; // gradual movement in oil
 
-  private bool isSuckOilOn = false;
-  private static float suckedInInt = 0;
+  private bool isSuckOilOn = false; // Is oil sucking functionality is available
+  private static float suckedInInt = 0; // Quantity of oil sucked
 
-  protected ProgressBar progressBar;
+  protected ProgressBar progressBar; // Progress Bar
 
+    // Guide Text, Score Text, Text Timer
   [SerializeField]
   protected TextMeshProUGUI guideText, scoreText;
   private TextMeshProUGUI textTimer;
@@ -61,10 +62,11 @@ public class OilSpill : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    CheckGameOver();
-    CheckKeyPress();
-    CheckNextLevel();
+    CheckGameOver();    // Check whether game is over
+    CheckKeyPress();    // Check key is pressed
+    CheckNextLevel();   // Check to next level
 
+    // In survival mode, if time is increased
     if (textTimer.text == "Time Increased")
     {
       scoreCollect = 0;
@@ -74,6 +76,8 @@ public class OilSpill : MonoBehaviour
     }
 
   }
+
+    // Check whether game is over
   private void CheckGameOver()
   {
     Scene scene = SceneManager.GetActiveScene();
@@ -81,24 +85,28 @@ public class OilSpill : MonoBehaviour
     {
       gameOver = true;
 
-      if (scoreText.text == "Score: 30")
+      if (scoreText.text == "Score: 30")    // If Score equals 30, level completes
       {
         guideText.text = "Congratulations, level complete.\nPress \"0\" to go to next level";
       }
-      else
+      else                                  // If level failed, press 1 to restart
       {
         guideText.text = "Alas, you lost.\nPress \"1\" to restart";
       }
     }
   }
-
+   
+    // If player won, check to next level otherwise repeat
   private void CheckNextLevel()
   {
+    // if player won and press keypad 0
     if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
     {
       levelLoader.active = true;
       loadNextLevel();
     }
+
+    // if game over and press keypad 1
     else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
     {
       Scene scene = SceneManager.GetActiveScene();
@@ -108,6 +116,7 @@ public class OilSpill : MonoBehaviour
     }
   }
 
+    // Load next level
   private void loadNextLevel()
   {
     StartCoroutine(LoadLevel());
@@ -126,10 +135,11 @@ public class OilSpill : MonoBehaviour
       SceneManager.LoadScene("Level " + (bar + 1));
   }
 
+    // If key is pressed
   private void CheckKeyPress()
   {
 
-    if (gameOver)
+    if (gameOver)    // If game is over
     {
       return;
     }
@@ -196,13 +206,6 @@ public class OilSpill : MonoBehaviour
       }
 
     }
-    // // key press check for mother ship deposit
-    // if (Input.GetKeyDown(KeyCode.Alpha9))
-    // {
-    //   progressBar.BarValue = 0;
-    //   suckedInInt = 0;
-
-    // }
   }
 
   private void OnTriggerEnter2D(Collider2D collision)

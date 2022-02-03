@@ -3,12 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class StartNemo : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private int speed = 2;
+    private int speed = 2;  // Speed of Nemo
     private float start;
     private float end;
+
+    // Start is called before the first frame update
     void Start()
     {
+        // Storing position of Nemo
         Vector2 pos = transform.position;
         start = pos.x;
         end = pos.y;
@@ -17,6 +19,7 @@ public class StartNemo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Movement of Nemo while introducing
         Vector2 pos = transform.position;
         if (pos.x < start / 2)
         {
@@ -31,7 +34,8 @@ public class StartNemo : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Menu");
+            // Loading Menu Scene after Nemo reached a particular location
+            SceneManager.LoadScene("Menu");      
         }
     }
 }

@@ -7,6 +7,7 @@ public class Garbage : MonoBehaviour
 
   void OnCollisionEnter2D(Collision2D collision)
   {
+        // If garbage is near Pulse, destroy pulse
     if (collision.gameObject.name == "pulse1")
     {
       Destroy(gameObject);
@@ -14,4 +15,4 @@ public class Garbage : MonoBehaviour
     }
   }
 
-} // class
+} // class 

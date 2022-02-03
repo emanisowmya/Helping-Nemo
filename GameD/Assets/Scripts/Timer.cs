@@ -3,12 +3,13 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+
 public class Timer : MonoBehaviour
 {
   [SerializeField] private float timeRemaining; // total time of level
   private bool isTimerRunning = false;
 
-  // TextMeshPro object for better font customisation
+  // TextMeshPro object for better font customization
   private TextMeshProUGUI textTimer;
 
     public Button yourButton;
@@ -17,7 +18,7 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
   {
-    // Initates the timer automatically
+    // Initiates the timer automatically
     textTimer = GetComponent<TextMeshProUGUI>();
 
     Button btn = yourButton.GetComponent<Button>();
@@ -60,15 +61,15 @@ public class Timer : MonoBehaviour
     }
 
     private void DisplayTime(float timeToDisplay)
-  {
+    {
     timeToDisplay += 1;
 
-    // convert to mins and secs for display
+    // convert to minutes and secs for display
     float minutes = Mathf.FloorToInt(timeToDisplay / 60);
     float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
     textTimer.text = string.Format("Time : {0:00}:{1:00}", minutes, seconds);
-  }
+    }
 
   IEnumerator IncreaseTime(float newTime)
   {

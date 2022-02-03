@@ -7,10 +7,10 @@ public class InstructionDisappear : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    protected Button yourButton;
+    protected Button yourButton;        // Button Next
 
     [SerializeField]
-    protected GameObject instruction;
+    protected GameObject instruction;   // Instruction
     void Start()
     {
         Button btn = yourButton.GetComponent<Button>();
@@ -23,6 +23,7 @@ public class InstructionDisappear : MonoBehaviour
 
     }
 
+    // On clicking button, hide instructions
     void TaskOnClick()
     {
         instruction.active = false;

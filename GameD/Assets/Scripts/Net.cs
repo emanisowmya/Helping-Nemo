@@ -7,10 +7,11 @@ public class Net : MonoBehaviour
 {
 
   [SerializeField]
-  private GameObject net_stucked_fish;
+  private GameObject net_stucked_fish;      // Game Object Turtle
 
-  protected ProgressBar progressBar;
+  protected ProgressBar progressBar;        // Progress Bar
 
+    // Guide Text, Score Text, Text Timer
   protected TextMeshProUGUI guideText, scoreText;
   private TextMeshProUGUI textTimer;
 
@@ -20,47 +21,47 @@ public class Net : MonoBehaviour
   private bool playerWon = false, gameOver = false;
 
   [SerializeField]
-  private NetStuckedFish net_again;
+  private NetStuckedFish net_again;     // If Turtle got stuck again
 
   [SerializeField]
-  private MoveNemo nemo;
+  private MoveNemo nemo;                // Nemo
 
-  public bool freeFromNet = false;
+  public bool freeFromNet = false;      // If Turtle is free
 
-  public Animator transition;
+  public Animator transition;           // Transition before level starts
 
-  public GameObject levelLoader;
+  public GameObject levelLoader;        // Next level loader
 
-    AudioSource knife;
+    AudioSource knife;                  // Audio for net cutter
 
     void Awake()
     {
-        progressBar = GameObject.Find("UI ProgressBar Animal Save").GetComponent<ProgressBar>();
-        guideText = GameObject.Find("InstructionTextBg").GetComponent<TextMeshProUGUI>();
-        scoreText = GameObject.Find("ScoreText_animal").GetComponent<TextMeshProUGUI>();
-        textTimer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
+        progressBar = GameObject.Find("UI ProgressBar Animal Save").GetComponent<ProgressBar>();    // Progress Bar
+        guideText = GameObject.Find("InstructionTextBg").GetComponent<TextMeshProUGUI>();           // Guide Text
+        scoreText = GameObject.Find("ScoreText_animal").GetComponent<TextMeshProUGUI>();            // Score Text
+        textTimer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();                       // Text Timer
     }
 
   // Start is called before the first frame update
   void Start()
   {
-    scoreCollect = 0;
-    progressBar.BarValue = 0;
-    knife = GetComponent<AudioSource>();
-        knife.volume = 0.5f;
-        knife.Stop();
-
+    scoreCollect = 0;                           // Score
+    progressBar.BarValue = 0;                   // Progree Bar
+    knife = GetComponent<AudioSource>();        // Audio for net cutter
+    knife.volume = 0.5f;                        // Volume for audio
+    knife.Stop();                               // Stopping audio
   }
 
   // Update is called once per frame
   void Update()
   {
+        // Updating position of net according to turtle
     transform.position = net_stucked_fish.transform.position;
-    //CheckGameOver();
-    CheckKeyPress();
-    CheckNextLevel();
-    CheckGameOver();
+    CheckKeyPress();    // Check if key is pressed
+    CheckNextLevel();   // Load next level
+    CheckGameOver();    // Check whether game is over or not
 
+    // For survival mode, if time increased
     if (textTimer.text == "Time Increased")
     {
       scoreCollect = 0;
@@ -69,6 +70,7 @@ public class Net : MonoBehaviour
     }
   }
 
+    // If key is pressed
     private void CheckKeyPress()
     {
 
@@ -77,20 +79,24 @@ public class Net : MonoBehaviour
             return;
         }
 
+        // If keypad 3 is pressed, play audio for net cutter
         if(Input.GetKeyDown(KeyCode.Alpha3))
         {
             knife.Play();
         }
 
         Scene scene = SceneManager.GetActiveScene();
+        // Bar value is less than 100 and key 3 is pressed
         if (Input.GetKeyDown(KeyCode.Alpha3) && progressBar.BarValue < 100)
         {
+            // If nemo is near turtle
             if (net_again.isNearStuckedFish)
             {
                 transform.localScale = new Vector3(0, 0, 0);
                 freeFromNet = true;
                 net_again.net_stucked = false;
 
+                // Progress Bar according to level
                 if (!(scene.name == "Level 5"))
                 {
                     progressBar.BarValue += 10;
@@ -103,6 +109,7 @@ public class Net : MonoBehaviour
                 scoreCollect += 1;
                 scoreText.text = "Score: " + scoreCollect;
 
+                // Score According to level
                 if (!(scene.name == "Level 5") && scoreCollect >= 10)
                 {
                     playerWon = true;
@@ -116,6 +123,8 @@ public class Net : MonoBehaviour
 
             }
         }
+
+        // If turtle get stucked again
         if (net_again.net_stucked)
         {
             transform.localScale = new Vector3(0.3f, 0.3f, 1f);
@@ -123,8 +132,10 @@ public class Net : MonoBehaviour
         }
     }
 
+    // Check game over
     private void CheckGameOver()
     {
+        // If game is over
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name == "Level 2" && (textTimer.text == "Game Over!" || gameOver))
         {
@@ -142,17 +153,20 @@ public class Net : MonoBehaviour
         }
     }
 
+    // Load next
     private void CheckNextLevel()
     {
         if (!gameOver)
         {
             return;
         }
+        // If player Won and pressed 0, go to next level
         if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
         {
             levelLoader.active = true;
             loadNextLevel();
         }
+        // If player lost and pressed 1, play same level again
         else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
         {
             Scene scene = SceneManager.GetActiveScene();
@@ -162,6 +176,7 @@ public class Net : MonoBehaviour
         }
     }
 
+    // Load next level after player is won
     private void loadNextLevel()
     {
         StartCoroutine(LoadLevel());

@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Progress : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Progess Bar
     public ProgressBar Pb;
 
-    void Start()
-    {
-      
-    }
-
-    // Update is called once per frame
+    // Updating progress bar for each level
     void Update()
     {
         Pb.BarValue = 40;

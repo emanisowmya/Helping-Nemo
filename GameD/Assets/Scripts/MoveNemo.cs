@@ -7,86 +7,97 @@ using UnityEngine.UI;
 public class MoveNemo : MonoBehaviour
 {
   // Start is called before the first frame update
-  [SerializeField] protected int speed;
-  private SpriteRenderer _renderer;
+  [SerializeField] protected int speed;         // Speed of Nemo
+  private SpriteRenderer _renderer;             // Nemo Sprite Renderer
 
-  private Rigidbody2D myBody;
-  private Collision2D collision;
+  private Rigidbody2D myBody;                   // Nemo body
+  private Collision2D collision;                // Nemo collision 2D
   private bool isNearGarbage = false, baki_left = false;
 
-  private string GARBAGE = "Garbage";
-  private string SPAWNSHIP = "SpawnShip";
+  private string GARBAGE = "Garbage";       // Tag for Garbage
+  private string SPAWNSHIP = "SpawnShip";   // tag for SpawnShip
 
-  AudioSource garbage;
+  AudioSource garbage;                      // Audio for Garbage
 
-  public ProgressBar Pb;
+  public ProgressBar Pb;                    // Progress Bar
 
+    // Guide Image, Score Image
   [SerializeField]
   protected Image guideImage, scoreImage;
 
+    // Guide Text, Score Text for all
   public TextMeshProUGUI guideText, scoreText, scoreText_animal, scoreText_oil;
 
+    // Rect Transform for help menu
   [SerializeField]
   private RectTransform help;
 
+    // To open help menu
   private bool open_help = true;
 
+    // Text Timer
   [SerializeField]
   private TextMeshProUGUI textTimer;
 
-
+    // Player Won
   public bool playerWon = false, gameOver = false;
   public int scoreCollect = 0;
 
   // for checking if nemo is spawn ship, can be used by oil spill so kept public
   public bool isNearSpawnShip = false;
 
-
+    // For transition
   public Animator transition;
 
+   // GameObject Level Loader
   public GameObject levelLoader;
 
   void Awake()
   {
-    myBody = GetComponent<Rigidbody2D>();
+    myBody = GetComponent<Rigidbody2D>();       // Nemo Rigid Body
 
   }
+
   void Start()
   {
-    _renderer = GetComponent<SpriteRenderer>();
-    Pb.BarValue = 0;
+    _renderer = GetComponent<SpriteRenderer>();     // Nemo Sprite Renderer
+    Pb.BarValue = 0;                                // Progress Bar
 
-    garbage = GetComponent<AudioSource>();
-    garbage.volume = 0.5f;
-    garbage.Stop();
+    garbage = GetComponent<AudioSource>();          // Audio Source for garbage collection
+    garbage.volume = 0.5f;                          // Volume for audio of garbage collection
+    garbage.Stop();                                 // Stopping audio
   }
 
   // Update is called once per frame
   void Update()
   {
-    CheckGameOver();
-    MoveNemoShip();
-    CheckKeyPress();
-    CheckNextLevel();
+    CheckGameOver();    // Check whether game is over
+    MoveNemoShip();     // moving nemo ship
+    CheckKeyPress();    // checking key press
+    CheckNextLevel();   // upload next level
   }
 
-  private void CheckGameOver()
+    // Check whether game is over
+    private void CheckGameOver()
   {
     Scene scene = SceneManager.GetActiveScene();
 
+        // If game is over, advance to next level for level 1
     if (scene.name == "Level 1" && (textTimer.text == "Game Over!" || gameOver))
     {
       textTimer.text = "Game Over!";
       gameOver = true;
+            // if player won
       if (playerWon)
       {
         guideText.text = "Congratulations, level complete.\nPress \"0\" to go to next level";
       }
-      else
+      else // if player lost
       {
         guideText.text = "Alas, you lost.\nPress \"1\" to restart";
       }
     }
+    // For level 2, game winning criteria
     else if (scene.name == "Level 2")
     {
       if (scoreText.text == "Score: 10")
@@ -96,7 +107,8 @@ public class MoveNemo : MonoBehaviour
         gameOver = true;
       }
     }
-    else if (scene.name == "Level 3")
+        // For level 3, game winning criteria
+        else if (scene.name == "Level 3")
     {
       if (scoreText.text == "Score: 30")
       {
@@ -105,6 +117,7 @@ public class MoveNemo : MonoBehaviour
         gameOver = true;
       }
     }
+        // For level 4, game winning criteria
     else if (scene.name == "Level 4")
     {
       if (textTimer.text == "Game Over!" || (scoreText_animal.text == "Score: 10" &&
@@ -114,10 +127,12 @@ public class MoveNemo : MonoBehaviour
         textTimer.text = "Game Over!";
         baki_left = false;
         gameOver = true;
+        // If player won
         if (playerWon)
         {
           guideText.text = "Congratulations, level complete.\nPress \"0\" to go to next level";
         }
+        // If player lost
         else
         {
           guideText.text = "Alas, you lost.\nPress \"1\" to restart";
@@ -128,6 +143,8 @@ public class MoveNemo : MonoBehaviour
         baki_left = true;
       }
     }
+
+    // For level 5, game winning criteria
     else if (scene.name == "Level 5")
     {
       if (textTimer.text == "Game Over!" || (scoreText_animal.text == "Score: 20" &&
@@ -137,11 +154,11 @@ public class MoveNemo : MonoBehaviour
         textTimer.text = "Game Over!";
         baki_left = false;
         gameOver = true;
-        if (playerWon)
+        if (playerWon)  // If player won
         {
           guideText.text = "Congratulations, you did it..\nPress \"0\" to go to main menu";
         }
-        else
+        else            // If player lost
         {
           guideText.text = "Alas, you lost.\nPress \"1\" to restart";
         }
@@ -151,8 +168,10 @@ public class MoveNemo : MonoBehaviour
         baki_left = true;
       }
     }
+    // For Survival level
     else if (scene.name == "SurvivalLevel")
     {
+        // Continue gaming
       if ((scoreText_animal.text == "Score: 10" &&
           scoreText_oil.text == "Score: 30" &&
           gameOver)
@@ -167,6 +186,7 @@ public class MoveNemo : MonoBehaviour
         scoreText_oil.text = "Score: 0";
         scoreText.text = "Score: 0";
       }
+      // Game is over
       else if (textTimer.text == "Game Over!")
       {
         gameOver = true;
@@ -181,23 +201,24 @@ public class MoveNemo : MonoBehaviour
     }
   }
 
-
+    // Next Gaming Level
   private void CheckNextLevel()
   {
+    // If player won and pressed 0, advance to next level
     if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
     {
       levelLoader.active = true;
       loadNextLevel();
     }
+    // If player lost and press 1, repeat this level
     else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
     {
       Scene scene = SceneManager.GetActiveScene();
-      // //print(scene.name[scene.name.Length-1]);
-      // int bar = scene.name[scene.name.Length - 1] - '0';
       SceneManager.LoadScene(scene.name);
     }
   }
 
+    // Loading next level
   private void loadNextLevel()
   {
     StartCoroutine(LoadLevel());
@@ -210,7 +231,6 @@ public class MoveNemo : MonoBehaviour
     yield return new WaitForSeconds(1);
 
     Scene scene = SceneManager.GetActiveScene();
-    //print(scene.name[scene.name.Length-1]);
     int bar = scene.name[scene.name.Length - 1] - '0';
     if (bar < 5)
       SceneManager.LoadScene("Level " + (bar + 1));
@@ -219,8 +239,11 @@ public class MoveNemo : MonoBehaviour
       SceneManager.LoadScene("Intro");
     }
   }
+
+    // Moving Nemo Ship
   private void MoveNemoShip()
   {
+    // If game over
     if (!baki_left && gameOver)
     {
       return;
@@ -229,6 +252,7 @@ public class MoveNemo : MonoBehaviour
     float h = Input.GetAxis("Horizontal");
     float v = Input.GetAxis("Vertical");
 
+    // Flipping nemo ship
     if (h > 0)
     {
       _renderer.flipX = false;
@@ -237,14 +261,17 @@ public class MoveNemo : MonoBehaviour
     {
       _renderer.flipX = true;
     }
+    // New position of Nemo Ship
     Vector2 pos = transform.position;
     pos.x += h * speed * Time.deltaTime;
     pos.y += v * speed * Time.deltaTime;
     transform.position = pos;
   }
 
+    // If key is pressed
   private void CheckKeyPress()
   {
+        // If game is over
     if (gameOver)
     {
       return;
@@ -252,8 +279,10 @@ public class MoveNemo : MonoBehaviour
 
     Scene scene = SceneManager.GetActiveScene();
 
+        // If Bar value is less than 100 and player pressed 2, then collect garbage
     if (Input.GetKeyDown(KeyCode.Alpha2) && Pb.BarValue < 100)
     {
+            // If near garbage
       if (isNearGarbage)
       {
         garbage.Play();
@@ -262,6 +291,7 @@ public class MoveNemo : MonoBehaviour
         scoreCollect += 1;
         scoreText.text = "Score: " + scoreCollect;
 
+        // Winning criteria according to level
         if (!(scene.name == "Level 5") && scoreCollect >= 20)
         {
           playerWon = true;
@@ -275,6 +305,8 @@ public class MoveNemo : MonoBehaviour
 
       }
     }
+
+    // If bar value is equal to 100 and player tries to collect garbage, show error message
     else if (Input.GetKeyDown(KeyCode.Alpha2) && Pb.BarValue == 100)
     {
       if (isNearGarbage)
@@ -282,10 +314,13 @@ public class MoveNemo : MonoBehaviour
         StartCoroutine(errorMessage());
       }
     }
+
+    // Press h to toggle help menu
     else if (Input.GetKeyDown(KeyCode.H))
     {
       open_help = !open_help;
     }
+    // Open/Close help menu accordingly
     if (open_help)
     {
       help.transform.position = new Vector3(help.transform.position.x, 0, 0);
@@ -297,6 +332,7 @@ public class MoveNemo : MonoBehaviour
 
   }
 
+    // Showing Error Message
   IEnumerator errorMessage()
   {
     Scene scene = SceneManager.GetActiveScene();
@@ -307,25 +343,28 @@ public class MoveNemo : MonoBehaviour
     //yield on a new YieldInstruction that waits for 5 seconds.
     yield return new WaitForSeconds(5);
 
+        // Guide Text according to level
     if (scene.name == "Level 1")
     {
       guideText.text = "Go near garbage and press \"2\" to collect it";
     }
     else if (scene.name == "Level 4")
     {
-      guideText.text = "Collect 20 garbage, 30 gallan oil and save 10 animals";
+      guideText.text = "Collect 20 garbage, 30 gallon oil and save 10 animals";
     }
     else if (scene.name == "Level 5")
     {
-      guideText.text = "Collect 30 garbage, 60 gallan oil and save 20 animals";
+      guideText.text = "Collect 30 garbage, 60 gallon oil and save 20 animals";
     }
     else if (scene.name == "SurvivalLevel")
     {
       guideText.text = "Collect items till given maximum capacity, once all are full you will get 20 sec extra";
     }
   }
+
   void OnCollisionEnter2D(Collision2D collision)
   {
+        // If nemo is near garbage
     if (collision.gameObject.CompareTag(GARBAGE))
     {
       this.collision = collision;
@@ -344,10 +383,13 @@ public class MoveNemo : MonoBehaviour
   private void OnCollisionExit2D(Collision2D collision)
   {
 
+    // If nemo goes away from garbage
     if (collision.gameObject.CompareTag(GARBAGE))
     {
       isNearGarbage = false;
     }
+
+    // for checking if nemo is spawn ship, can be used by oil spill
     if (collision.gameObject.CompareTag(SPAWNSHIP))
     {
       isNearSpawnShip = false;
