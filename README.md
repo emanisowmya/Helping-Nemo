@@ -1,7 +1,7 @@
 # Helping Nemo (*Be a Rambo, to our Nemo*)
 Helping Nemo is a game designed to help save water resources from getting polluted.
 
-##About
+## About
 ### Description
 Helping Nemo is a game designed to help save water resources from getting polluted. We tried to capture types of pollution possible underwater and tried to spread awareness to the users about it.
 The significant problems we focus on are garbage thrown in the water, oil spills that happen due to the factories, and the underwater animals that get stuck in the nets and plastics.
