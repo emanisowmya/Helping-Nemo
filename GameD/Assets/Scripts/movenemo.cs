@@ -34,6 +34,7 @@ public class MoveNemo : MonoBehaviour
   [SerializeField]
   private TextMeshProUGUI textTimer;
 
+
   public bool playerWon = false, gameOver = false;
   public int scoreCollect = 0;
 
@@ -41,9 +42,9 @@ public class MoveNemo : MonoBehaviour
   public bool isNearSpawnShip = false;
 
 
-    public Animator transition;
+  public Animator transition;
 
-    public GameObject levelLoader;
+  public GameObject levelLoader;
 
   void Awake()
   {
@@ -75,6 +76,7 @@ public class MoveNemo : MonoBehaviour
 
     if (scene.name == "Level 1" && (textTimer.text == "Game Over!" || gameOver))
     {
+      textTimer.text = "Game Over!";
       gameOver = true;
       if (playerWon)
       {
@@ -89,6 +91,7 @@ public class MoveNemo : MonoBehaviour
     {
       if (scoreText.text == "Score: 10")
       {
+        textTimer.text = "Game Over!";
         playerWon = true;
         gameOver = true;
       }
@@ -97,6 +100,7 @@ public class MoveNemo : MonoBehaviour
     {
       if (scoreText.text == "Score: 30")
       {
+        textTimer.text = "Game Over!";
         playerWon = true;
         gameOver = true;
       }
@@ -107,6 +111,7 @@ public class MoveNemo : MonoBehaviour
           scoreText_oil.text == "Score: 30" &&
           gameOver))
       {
+        textTimer.text = "Game Over!";
         baki_left = false;
         gameOver = true;
         if (playerWon)
@@ -122,17 +127,19 @@ public class MoveNemo : MonoBehaviour
       {
         baki_left = true;
       }
-    }else if (scene.name == "Level 5")
+    }
+    else if (scene.name == "Level 5")
     {
       if (textTimer.text == "Game Over!" || (scoreText_animal.text == "Score: 20" &&
           scoreText_oil.text == "Score: 60" &&
           gameOver))
       {
+        textTimer.text = "Game Over!";
         baki_left = false;
         gameOver = true;
         if (playerWon)
         {
-          guideText.text = "Congratulations, level complete.\nPress \"0\" to go to next level";
+          guideText.text = "Congratulations, you did it..\nPress \"0\" to go to main menu";
         }
         else
         {
@@ -144,42 +151,72 @@ public class MoveNemo : MonoBehaviour
         baki_left = true;
       }
     }
+    else if (scene.name == "SurvivalLevel")
+    {
+      if ((scoreText_animal.text == "Score: 10" &&
+          scoreText_oil.text == "Score: 30" &&
+          gameOver))
+      {
+        gameOver = false;
+        baki_left = false;
+        textTimer.text = "Time Increased";
+        scoreCollect = 0;
+        Pb.BarValue = 0;
+        scoreText_animal.text = "Score: 0";
+        scoreText_oil.text = "Score: 0";
+        scoreText.text = "Score: 0";
+      }
+      else if (textTimer.text == "Game Over!")
+      {
+        gameOver = true;
+        guideText.text = "Congratulations, You have made it this far.\nPress \"1\" to restart";
+
+      }
+      else
+      {
+        baki_left = true;
+      }
+    }
   }
 
- 
+
   private void CheckNextLevel()
   {
     if (Input.GetKeyDown(KeyCode.Alpha0) && playerWon)
     {
-            levelLoader.active = true;
-            loadNextLevel();
+      levelLoader.active = true;
+      loadNextLevel();
     }
     else if (Input.GetKeyDown(KeyCode.Alpha1) && gameOver)
     {
       Scene scene = SceneManager.GetActiveScene();
-      //print(scene.name[scene.name.Length-1]);
-      int bar = scene.name[scene.name.Length - 1] - '0';
-      SceneManager.LoadScene("Level " + bar);
+      // //print(scene.name[scene.name.Length-1]);
+      // int bar = scene.name[scene.name.Length - 1] - '0';
+      SceneManager.LoadScene(scene.name);
     }
   }
-    
+
   private void loadNextLevel()
+  {
+    StartCoroutine(LoadLevel());
+  }
+
+  IEnumerator LoadLevel()
+  {
+    transition.SetTrigger("Start");
+
+    yield return new WaitForSeconds(1);
+
+    Scene scene = SceneManager.GetActiveScene();
+    //print(scene.name[scene.name.Length-1]);
+    int bar = scene.name[scene.name.Length - 1] - '0';
+    if (bar < 5)
+      SceneManager.LoadScene("Level " + (bar + 1));
+    else if (bar == 5)
     {
-        StartCoroutine(LoadLevel());
+      SceneManager.LoadScene("Intro");
     }
-
-    IEnumerator LoadLevel()
-    {
-        transition.SetTrigger("Start");
-
-        yield return new WaitForSeconds(1);
-
-        Scene scene = SceneManager.GetActiveScene();
-        //print(scene.name[scene.name.Length-1]);
-        int bar = scene.name[scene.name.Length - 1] - '0';
-        if (bar < 5)
-            SceneManager.LoadScene("Level " + (bar + 1));
-    }
+  }
   private void MoveNemoShip()
   {
     if (!baki_left && gameOver)
@@ -227,7 +264,9 @@ public class MoveNemo : MonoBehaviour
         {
           playerWon = true;
           gameOver = true;
-        }else if(scoreCollect >= 30){
+        }
+        else if (scoreCollect >= 30)
+        {
           playerWon = true;
           gameOver = true;
         }
@@ -265,13 +304,22 @@ public class MoveNemo : MonoBehaviour
 
     //yield on a new YieldInstruction that waits for 5 seconds.
     yield return new WaitForSeconds(5);
-    
-    if(scene.name == "Level 1"){
+
+    if (scene.name == "Level 1")
+    {
       guideText.text = "Go near garbage and press \"2\" to collect it";
-    }else if(scene.name == "Level 4"){
+    }
+    else if (scene.name == "Level 4")
+    {
       guideText.text = "Collect 20 garbage, 30 gallan oil and save 10 animals";
-    }else if(scene.name == "Level 5"){
+    }
+    else if (scene.name == "Level 5")
+    {
       guideText.text = "Collect 30 garbage, 60 gallan oil and save 20 animals";
+    }
+    else if (scene.name == "SurvivalLevel")
+    {
+      guideText.text = "Collect items till given maximum capacity, once all are full you will get 20 sec extra";
     }
   }
   void OnCollisionEnter2D(Collision2D collision)
