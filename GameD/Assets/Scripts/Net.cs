@@ -31,6 +31,8 @@ public class Net : MonoBehaviour
 
     public GameObject levelLoader;
 
+    AudioSource knife;
+
     void Awake()
     {
         progressBar = GameObject.Find("UI ProgressBar Animal Save").GetComponent<ProgressBar>();
@@ -44,6 +46,10 @@ public class Net : MonoBehaviour
     {
         scoreCollect = 0;
         progressBar.BarValue = 0;
+
+        knife = GetComponent<AudioSource>();
+        knife.volume = 0.5f;
+        knife.Stop();
 
     }
 
@@ -63,6 +69,11 @@ public class Net : MonoBehaviour
         if (gameOver)
         {
             return;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            knife.Play();
         }
 
         Scene scene = SceneManager.GetActiveScene();
