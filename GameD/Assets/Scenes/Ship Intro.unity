@@ -625,6 +625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 788597382}
   - component: {fileID: 788597381}
+  - component: {fileID: 788597383}
   m_Layer: 0
   m_Name: SpawnShip
   m_TagString: Untagged
@@ -697,6 +698,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &788597383
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788597380}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 277fedf4323d06543a06aaca2519e8b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &842100167
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,7 +889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -102.32007, y: 149.71}
+  m_AnchoredPosition: {x: -102.32001, y: 149.71}
   m_SizeDelta: {x: -95.37, y: 249.41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &865828349
@@ -1117,6 +1137,7 @@ GameObject:
   - component: {fileID: 1384921931}
   - component: {fileID: 1384921930}
   - component: {fileID: 1384921929}
+  - component: {fileID: 1384921933}
   m_Layer: 0
   m_Name: 'Nemo '
   m_TagString: Untagged
@@ -1236,6 +1257,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1384921933
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384921928}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41c731a61b609224c902d4701de705ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1822922027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,7 +1600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2266711504890959010, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 119.84
+      value: 119.839966
       objectReference: {fileID: 0}
     - target: {fileID: 2266711504890959011, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_text
@@ -1699,7 +1739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6931812136506076754, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 37.02
+      value: 37.02002
       objectReference: {fileID: 0}
     - target: {fileID: 6931812136506076754, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -8,6 +8,7 @@ public class TransNemo : MonoBehaviour
     public Button yourButton;
     void Start()
     {
+        // Get next button component
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
     }
@@ -21,6 +22,7 @@ public class TransNemo : MonoBehaviour
         }
     }
 
+    // Loads next dialogue of Spawn ship
     void TaskOnClick()
     {
         SceneManager.LoadScene("Ship Intro");

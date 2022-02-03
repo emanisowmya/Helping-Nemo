@@ -33,17 +33,19 @@ public class TransMenu : MonoBehaviour
         }
     }
 
+    // Loads the next Story scene of nemo intro
     void StoryModeOnClick()
     {
         SceneManager.LoadScene("Nemo Intro");
     }
 
+    // Loads Survival mode
     void SurvivalModeOnClick()
     {
         SceneManager.LoadScene("SurvivalLevel");
     }
 
-
+    // For desktop applications quits game
     public void QuitGame()
     {
         Debug.Log("QUIT");
