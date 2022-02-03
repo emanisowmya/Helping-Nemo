@@ -19,7 +19,7 @@ Since the game is WebGL format, it can be played in any modern browser and is su
 
 ### system requirements
 The minimum required ram is 4 GB.
-Recent CPU and Video card with updated drivers
+Recent CPU and Video card with updated drivers.
 latest version for any of the following websites:-
 - Chrome
 - Frefox
@@ -35,10 +35,44 @@ latest version for any of the following websites:-
  - Can rescue turtles by cutting nets.
  - Can suck oil spilled in the ocean.
  - Can blast off pulses
+
 ### Ship
  - Spawns Nemo and drops it
  - Store garbages and oil collected by Nemo
 
+## Levels
+
+### Intro
+- Menu and Story
+
+### 1st level: Garbage Collection (Collector Nemo)
+- Nemo has to collect garbages thrown by people into the ocean.
+- After collecting a certain amount of garbage, it has to dump it into the carrier ship.
+- For completing this level, Nemo has to cross a threshold score in the given time.
+
+### 2nd level: Rescue The Turtle (Cutter Nemo)
+- Nemo will get a net cutter.
+- With great power comes a great responsibility.
+- Now, Nemo has to rescue the turtles by cutting the net, in which it is stuck.
+- To complete this level, Nemo has to rescue a certain number of turtles in the given time.
+
+### 3rd level: Suck Spilled Oil (Sucker Nemo)
+- Unfortunately, Oil is spilled in the ocean.
+- Now, Nemo has to suck them and store them in the carrier ship.
+- To pass this level, Nemo has to cross the threshold score of oil collection in the given time.
+
+### 4th level: Main Game (Nemo Nemo)
+- Now, Nemo is prepared to tackle all at once.
+- In this level, Nemo has to collect garbage, rescue turtles and suck spilled oil.
+- To pass this level, Nemo has to cross a threshold score.
+
+### 5th level: Pro Mode (Pro Nemo)
+- Nemo has tackled all odds thrown at him (and the ocean)
+- In this level, Nemo has to collect garbage, rescue turtles and suck spilled oil with increased difficulty.
+- To pass this level, Nemo has to cross a threshold score with a more strict time limit.
+
+### Survival Mode
+In development.
 
 ## The Code
 ### Language
@@ -46,7 +80,7 @@ the code is primarily made with C#
 ### required software
 unity engine with WebGl module
 github(like github desktop)
-### 
+
 
 
 
