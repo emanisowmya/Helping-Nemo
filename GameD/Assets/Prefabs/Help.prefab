@@ -65,21 +65,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '                 CONTROL
+  m_text: '              CONTROLS
 
-    Movement: WASD (arrow keys)
+    Movement: WASD / Arrow keys
 
-    Pulse:
-    Space
+    Pulse: Space
 
-    Collect Garbage: 2
+    Collect
+    Garbage: 2
 
     Net Cutter: 3
 
     Oil Collector: 4
 
-    Dumping
-    into mothership: 9
+    Dumping into mothership:
+    9
 
     Show Help: h
 
