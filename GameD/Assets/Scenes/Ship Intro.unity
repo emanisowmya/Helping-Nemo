@@ -869,7 +869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -102.32001, y: 149.71}
+  m_AnchoredPosition: {x: -102.32007, y: 149.71}
   m_SizeDelta: {x: -95.37, y: 249.41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &865828349
@@ -1550,11 +1550,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 424224192187242022}
     m_Modifications:
+    - target: {fileID: 2266711504890959010, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -259.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266711504890959010, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266711504890959010, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 119.84
+      objectReference: {fileID: 0}
     - target: {fileID: 2266711504890959011, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_text
-      value: 'This is the Spawn Ship...
+      value: 'This is the Ship!!!
 
-        Collect all the objects.'
+        We release Nemo into the water where all
+        the wastage once filled is dumped here .'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266711504890959011, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266711504890959011, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4058530752879461782, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_Name
@@ -1669,12 +1690,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6931812136506076754, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -158.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 6931812136506076754, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 201.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 6931812136506076754, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 82
+      value: 37.02
       objectReference: {fileID: 0}
     - target: {fileID: 6931812136506076754, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 94
+      value: 71.97
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3469189201008138403, guid: ab6916273b260844583b2743b6fb7941, type: 3}

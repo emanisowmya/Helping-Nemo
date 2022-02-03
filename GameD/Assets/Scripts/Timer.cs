@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
   [SerializeField] private float timeRemaining; // total time of level
@@ -11,13 +11,17 @@ public class Timer : MonoBehaviour
   // TextMeshPro object for better font customisation
   private TextMeshProUGUI textTimer;
 
+    public Button yourButton;
 
-  // Start is called before the first frame update
-  void Start()
+    public GameObject clear;
+    // Start is called before the first frame update
+    void Start()
   {
     // Initates the timer automatically
-    isTimerRunning = true;
     textTimer = GetComponent<TextMeshProUGUI>();
+
+    Button btn = yourButton.GetComponent<Button>();
+    btn.onClick.AddListener(TaskOnClick);
   }
 
   // Update is called once per frame
@@ -46,9 +50,16 @@ public class Timer : MonoBehaviour
       }
 
     }
-  }
+    }
 
-  private void DisplayTime(float timeToDisplay)
+    void TaskOnClick()
+    {
+        clear.active = false;
+        isTimerRunning = true;
+
+    }
+
+    private void DisplayTime(float timeToDisplay)
   {
     timeToDisplay += 1;
 

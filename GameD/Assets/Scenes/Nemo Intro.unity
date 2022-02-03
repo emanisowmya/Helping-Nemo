@@ -1014,9 +1014,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1481596856802162179}
     m_Modifications:
+    - target: {fileID: 2266711504890959010, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -233.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266711504890959010, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266711504890959010, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 106.98999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266711504890959010, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0025024414
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266711504890959011, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_text
+      value: "Hey guys!!!\nThis is me NEMO: The sea creatures saviour. You might
+        want to know my story so here it is.  \nSo nemo was invented to save the
+        sea creatures by collecting the sea pollution or in other words collecting
+        the human waste/pollution from the ocean.\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 2266711504890959011, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266711504890959011, guid: ab6916273b260844583b2743b6fb7941, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6931812136400119351, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_Sprite
@@ -1052,11 +1079,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6931812136506076754, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -248.85
+      value: -109.33
       objectReference: {fileID: 0}
     - target: {fileID: 6931812136506076754, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 157.91
+      value: 280.92
       objectReference: {fileID: 0}
     - target: {fileID: 6931812136506076754, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1088,11 +1115,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6931812136506076754, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 30
+      value: 33.680054
       objectReference: {fileID: 0}
     - target: {fileID: 6931812136506076754, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -102
+      value: -40.49
       objectReference: {fileID: 0}
     - target: {fileID: 6931812136506076754, guid: ab6916273b260844583b2743b6fb7941, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
