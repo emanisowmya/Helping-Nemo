@@ -78,8 +78,8 @@ In development.
 ### Language
 the code is primarily made with C# 
 ### required software
-unity engine with WebGl module
-github(like github desktop)
+- unity engine with WebGl module
+- github(like github desktop)
 
 
 
